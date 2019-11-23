@@ -1,0 +1,11 @@
+<h1>Did not find what you want?</h1>
+<b>Place your request below and you will find it right away</b>
+
+<ul>
+    <li> <strong>Name </strong> <input type="text" [(ngModel)]="name"><br>
+        <strong>Book/CD </strong> <input type="text" [(ngModel)]="description"><br>
+        <strong>How many days? </strong> <input type="text" [(ngModel)]="due"><br>
+        <strong>How many items? </strong> <input type="text" [(ngModel)]="quantity"><br>
+        <button (click)="submitRequest(name,description,due,quantity)">Submit Request</button>
+    </li>
+</ul>

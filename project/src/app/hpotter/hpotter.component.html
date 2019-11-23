@@ -1,0 +1,12 @@
+<h1>Harry Potter</h1>
+
+<ul *ngIf="wizards">
+    <li *ngFor="let wizard of wizards">
+        <p class="name">{{ wizard.name }}</p>
+        <br>
+        <p class="description">{{ wizard.description }}</p>
+        <a>Due days</a> <p class="due">{{ wizard.due }}</p>
+        <a>Items Left</a>
+        <p class="quantity">{{ wizard.quantity }}</p>
+    </li>
+</ul>
