@@ -3,9 +3,9 @@
 // const app = require('./app');
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/revies');
+mongoose.connect('mongodb://localhost:27017/songs');
 
-const review = require('./schema/reviews');
+const song = require('./schema/songs');
 
 const express = require('express');
 const app = express();
@@ -13,7 +13,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const port = process.env.PORT || 3000;
 
-// app.use(morgan('dev'));
+// app.use(morgan('dev'));cd
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -37,76 +37,76 @@ router.use(function (req, res, next) {
     next();
 });
 
-router.route('/reviews').post(function (req, res, next) {
-    var review = new review();
-    review.name = req.body.name;
-    review.description = req.body.description;
-    review.due = req.body.due;
-    review.quantity = req.body.quantity;
+router.route('/songs').get(function (req, res, next) {
+    song.find(function (err, songs) {
+        if (err)
+            res.send(err);
 
-    review.save(function (err) {
+        res.json(songs);
+    });
+});
+router.route('/songs').post(function (req, res, next) {
+    var song = new song();
+    song.name = req.body.name;
+    song.description = req.body.description;
+    song.due = req.body.due;
+    song.quantity = req.body.quantity;
+
+    song.save(function (err) {
         if (err) { res.send(err); }
 
-        res.json({ message: 'review included' });
+        res.json({ message: 'song included' });
     })
-})
-    .get(function (req, res, next) {
-        review.find(function (err, reviews) {
-            if (err)
-                res.send(err);
-
-            res.json(reviews);
-        });
-    });
-router.route('/reviews').delete(function (req, res, next) {
-    review.remove({}, function (err, review) {
+});
+router.route('/songs').delete(function (req, res, next) {
+    song.remove({}, function (err, song) {
         if (err)
             return callback(err);
-        res.json({ message: 'Removed reviews from list' });
+        res.json({ message: 'Removed songs from list' });
     });
 });
 
-router.route('/reviews/:review_id').get(function (req, res, next) {
-    review.findById(req.params.review_id, function (err, review) {
+router.route('/songs/:song_id').get(function (req, res, next) {
+    song.findById(req.params.song_id, function (err, song) {
         if (err)
             res.send(err);
-        res.json(review);
+        res.json(song);
     });
 })
 
-router.route('/reviews/:review_id').put(function (req, res, next) {
-    review.findById(req.params.review_id, function (err, review) {
+router.route('/songs/:song_id').put(function (req, res, next) {
+    song.findById(req.params.song_id, function (err, song) {
         if (err)
             res.send(err);
-        review.due = req.body.due;
-        review.save(function (err) {
+        song.due = req.body.due;
+        song.save(function (err) {
             if (err)
                 res.send(err);
-            res.json({ message: 'review edited' });
+            res.json({ message: 'song edited' });
         });
     });
 })
 
-router.route('/reviews/:review_id').delete(function (req, res, next) {
-    review.remove({
-        _id: req.params.review_id
-    }, function (err, review) {
+router.route('/songs/:song_id').delete(function (req, res, next) {
+    song.remove({
+        _id: req.params.song_id
+    }, function (err, song) {
         if (err)
             res.send(err);
 
-        res.json({ message: 'review removed' });
+        res.json({ message: 'song removed' });
     });
 });
 
-router.route('/reviews/quantity/:review_id').put(function (req, res, next) {
-    review.findById(req.params.review_id, function (err, review) {
+router.route('/songs/quantity/:song_id').put(function (req, res, next) {
+    song.findById(req.params.song_id, function (err, song) {
         if (err)
             res.send(err);
-        review.quantity = req.body.quantity;
-        review.save(function (err) {
+        song.quantity = req.body.quantity;
+        song.save(function (err) {
             if (err)
                 res.send(err);
-            res.json({ message: 'review updated!' });
+            res.json({ message: 'song updated!' });
         });
     });
 });
