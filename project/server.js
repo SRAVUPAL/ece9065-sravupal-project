@@ -31,8 +31,8 @@ app.get('/', (req, res) => {
 });
 
 require('./app/routes/admin.js')(app);
-require('./app/routes/guest.js')(app);
-require('./app/routes/user.js')(app);
+// require('./app/routes/guest.js')(app);
+// require('./app/routes/user.js')(app);
 
 // listen for requests
 app.listen(3000, () => {
