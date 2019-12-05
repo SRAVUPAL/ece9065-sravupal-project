@@ -1,5 +1,5 @@
 module.exports = (app) => {
-    const special = require('../controllers/adminController.js');
+    const special = require('../controllers/guestController.js');
 
     // Create a new Song
     // app.post('/guest/songs', special.createSong);
