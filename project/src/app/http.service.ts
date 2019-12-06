@@ -7,10 +7,10 @@ import { HttpClient } from '@angular/common/http';
 export class HttpService {
 
   constructor(private http: HttpClient ) { }
-  getHpotter() {
+  getSongsPage() {
     return this.http.get('http://localhost:3000/admin/songs')
   }
-  postHpotter(Hrequest) {
+  postSongsPage(Hrequest) {
     // return this.http.post('http://localhost:3000/api/items/', Hrequest)
   }
 }
