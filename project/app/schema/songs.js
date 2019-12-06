@@ -13,9 +13,9 @@ const SongSchema = new mongoose.Schema({
     thumbnail: String
 },
     {
-        timestamps: true
-    })
-    ;
+        timestamps: true,
+        versionKey: false
+    });
 
-module.exports = mongoose.model('songs', SongSchema);
+module.exports = mongoose.model('songs', SongSchema, 'songs');
 

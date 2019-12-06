@@ -4,7 +4,8 @@ const ReviewSchema = new mongoose.Schema({
     reviwer: String,
     review: String,
 }, {
-    timestamps: true
+    timestamps: true,
+    versionKey: false
 });
 
 module.exports = mongoose.model('review', ReviewSchema);

@@ -4,7 +4,8 @@ const RatingSchema = new mongoose.Schema({
     rating: Number,
     overall_Rating: Number
 }, {
-    timestamps: true
+    timestamps: true,
+    versionKey: false
 });
 
 module.exports = mongoose.model('ratings', RatingSchema);

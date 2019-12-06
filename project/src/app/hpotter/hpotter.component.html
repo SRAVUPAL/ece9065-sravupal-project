@@ -1,12 +1,18 @@
 <h1>Harry Potter</h1>
 
-<ul *ngIf="wizards">
-    <li *ngFor="let wizard of wizards">
-        <p class="name">{{ wizard.name }}</p>
+<div *ngIf="allSongs">
+    <div class="songList" id="song"i *ngFor="let song of allSongs">
+        <p class="songle_title"><strong>Title: </strong>{{ song.title }}</p>
         <br>
-        <p class="description">{{ wizard.description }}</p>
-        <a>Due days</a> <p class="due">{{ wizard.due }}</p>
-        <a>Items Left</a>
-        <p class="quantity">{{ wizard.quantity }}</p>
-    </li>
-</ul>
+        <p class="song_data"><strong>Overall Rating: </strong>{{ song.rating }}</p>
+        <p class="song_data"><a>Artist:</a> {{ song.artist }}</p>
+        <p class="song_data"><a>Album:</a> {{ song.album }}</p>
+        <p class="song_data"><a>Length:</a> {{ song.length }}</p>
+        <p class="song_data"><a>Year:</a> {{ song.year }}</p>
+        <p class="song_data"><a>Genre:</a> {{ song.genre }}</p>
+        <p class="song_data"><a>Comment:</a> {{ song.comment }}</p>
+        <img [src]="song.thumbnail" />
+    </div>
+</div>
+
+<!-- <mat-slider min="1" max="100" step="1" value="1"></mat-slider> -->

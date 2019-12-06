@@ -5,7 +5,8 @@ const accessSchema = new mongoose.Schema({
     password: String,
     class: String
 }, {
-    timestamps: true
+    timestamps: true,
+    versionKey: false
 });
 
 module.exports = mongoose.model('access', accessSchema);

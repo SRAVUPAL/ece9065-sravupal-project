@@ -1,6 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
+/*
+* Reference: "https://www.callicoder.com/node-js-express-mongodb-restful-crud-api-tutorial/"
+*/
+
 // create express app
 const app = express();
 
@@ -19,7 +23,7 @@ mongoose.Promise = global.Promise;
 mongoose.connect(dbConfig.url, {
     useNewUrlParser: true
 }).then(() => {
-    console.log("DB connection success");    
+    console.log("DB connection success");
 }).catch(err => {
     console.log('DB connection failed', err);
     process.exit();
@@ -27,12 +31,12 @@ mongoose.connect(dbConfig.url, {
 
 // define a simple route
 app.get('/', (req, res) => {
-    res.json({message: "Project"});
+    res.json({ message: "Project" });
 });
 
 require('./app/routes/admin.js')(app);
-// require('./app/routes/guest.js')(app);
-// require('./app/routes/user.js')(app);
+require('./app/routes/guest.js')(app);
+require('./app/routes/user.js')(app);
 
 // listen for requests
 app.listen(3000, () => {

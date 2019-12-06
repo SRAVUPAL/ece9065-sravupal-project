@@ -5,27 +5,30 @@ const RatingData = require('../schema/ratings.js');
 // Create and Save a new SongData
 exports.createSong = (req, res, next) => {
     // Validate request
-    if (!req.body.content) {
+    if (!req.body) {
         return res.status(400).send({
             message: "SongData content can not be empty"
         });
     }
+    console.log(req.body.title);
 
     // Create new SongData
     const songReq = new SongData({
-        title: req.body.title || "Untitled Song",
+        title: req.body.title,
         rating: req.body.rating,
-        artist: req.body.artist || "Unknown",
-        album: req.body.album || "Unknown",
+        artist: req.body.artist,
+        album: req.body.album,
         length: req.body.length,
         year: req.body.year,
-        genre: req.body.genre || "Unknown",
-        comment: req.body.comment || "Unknown",
-        Hidden: req.body.Hidden || "Unknown",
+        genre: req.body.genre,
+        comment: req.body.comment,
+        Hidden: req.body.Hidden,
         thumbnail: req.body.thumbnail
     });
 
     // Save SongData in the database
+    console.log(songReq);
+
     songReq.save()
         .then(data => {
             res.send(data);
