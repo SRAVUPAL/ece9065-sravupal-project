@@ -2,7 +2,7 @@
 
 <div *ngIf="allSongs">
     <div class="songList" id="song" i *ngFor="let song of allSongs">
-        <button mat-flat-button onclick="expand()" [style.background-image]="'url(' + song.thumbnail + ')'">
+        <button mat-raised-button (click)="expand()" [style.background-image]="'url(' + song.thumbnail + ')'">
             <p class="songle_title">{{ song.title }}</p>
             <br>
             <p class="song_data"><strong>Overall Rating: </strong>{{ song.rating }}</p>

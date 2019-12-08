@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService} from '../http.service';
+import { HttpService } from '../http.service';
+import { MatDialog, MatDialogConfig} from '@angular/material';
 
 @Component({
   selector: 'app-songsPage',
@@ -11,7 +12,7 @@ export class SongsPageComponent implements OnInit {
 
   allSongs: Object;
 
-  constructor(private _http: HttpService) { }
+  constructor(private _http: HttpService, private dialog: MatDialog) { }
 
   ngOnInit() {
     this._http.getSongsPage().subscribe(data => {
@@ -20,4 +21,7 @@ export class SongsPageComponent implements OnInit {
     });
   }
 
+  expand() {
+    this.dialog.open(SongsPageComponent);
+  }
 }
