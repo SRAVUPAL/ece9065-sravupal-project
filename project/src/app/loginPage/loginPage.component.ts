@@ -3,14 +3,14 @@ import { HttpService } from '../http.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
-  selector: 'app-got',
-  templateUrl: './got.component.html',
-  styleUrls: ['./got.component.scss']
+  selector: 'app-loginPage',
+  templateUrl: './loginPage.component.html',
+  styleUrls: ['./loginPage.component.scss']
 })
-export class GotComponent implements OnInit {
+export class LoginPageComponent implements OnInit {
 
-  name: string = '';
-  description: string = '';
+  Userid: string = '';
+  Password: string = '';
   due: string = '';
   quantity: number = null;
 

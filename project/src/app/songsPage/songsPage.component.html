@@ -1,18 +1,28 @@
 <h1>All Time Best Songs</h1>
 
 <div *ngIf="allSongs">
-    <div class="songList" id="song"i *ngFor="let song of allSongs">
-        <p class="songle_title"><strong>Title: </strong>{{ song.title }}</p>
-        <br>
-        <p class="song_data"><strong>Overall Rating: </strong>{{ song.rating }}</p>
-        <p class="song_data"><a>Artist:</a> {{ song.artist }}</p>
-        <p class="song_data"><a>Album:</a> {{ song.album }}</p>
-        <p class="song_data"><a>Length:</a> {{ song.length }}</p>
-        <p class="song_data"><a>Year:</a> {{ song.year }}</p>
-        <p class="song_data"><a>Genre:</a> {{ song.genre }}</p>
-        <p class="song_data"><a>Comment:</a> {{ song.comment }}</p>
-        <img [src]="song.thumbnail" />
+    <div class="songList" id="song" i *ngFor="let song of allSongs">
+        <button mat-flat-button onclick="expand()" [style.background-image]="'url(' + song.thumbnail + ')'">
+            <p class="songle_title">{{ song.title }}</p>
+            <br>
+            <p class="song_data"><strong>Overall Rating: </strong>{{ song.rating }}</p>
+            <!-- <p class="song_data"><a>Artist:</a> {{ song.artist }}</p>
+            <p class="song_data"><a>Album:</a> {{ song.album }}</p>
+            <p class="song_data"><a>Length:</a> {{ song.length }}</p>
+            <p class="song_data"><a>Year:</a> {{ song.year }}</p>
+            <p class="song_data"><a>Genre:</a> {{ song.genre }}</p>
+            <p class="song_data"><a>Comment:</a> {{ song.comment }}</p> -->
+        </button>
     </div>
 </div>
 
-<!-- <mat-slider min="1" max="100" step="1" value="1"></mat-slider> -->
+<!-- <mat-expansion-panel>
+    <mat-expansion-panel-header>
+    <mat-panel-title>
+        Songs
+    </mat-panel-title>
+    <mat-panel-description>
+        song description
+    </mat-panel-description>
+    </mat-expansion-panel-header>
+  </mat-expansion-panel> -->
