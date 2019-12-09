@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const request = require('request');
 
 /*
 * Reference: "https://www.callicoder.com/node-js-express-mongodb-restful-crud-api-tutorial/"
@@ -7,6 +8,24 @@ const bodyParser = require('body-parser');
 
 // create express app
 const app = express();
+
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    next();
+  });
+  
+  app.get('/jokes/random', (req, res) => {
+    request(
+      { url: 'https://joke-api-strict-cors.appspot.com/jokes/random' },
+      (error, response, body) => {
+        if (error || response.statusCode !== 200) {
+          return res.status(500).json({ type: 'error', message: err.message });
+        }
+  
+        res.json(JSON.parse(body));
+      }
+    )
+  });
 
 app.use(bodyParser.urlencoded({ extended: true }))
 
@@ -39,6 +58,12 @@ require('./app/routes/guest.js')(app);
 require('./app/routes/user.js')(app);
 
 // listen for requests
-app.listen(3000, () => {
-    console.log("Server is listening on port 3000");
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`listening on ${PORT}`);
 });
+
+
+
+
+

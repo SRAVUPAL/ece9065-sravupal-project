@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
-import { MatDialog, MatDialogConfig} from '@angular/material';
+import { MatDialog, MatDialogConfig, MatDialogModule} from '@angular/material';
+import { ReviewComponent } from '../reviewComponent/reviewComponent.component';
 
 @Component({
   selector: 'app-songsPage',
@@ -22,6 +23,11 @@ export class SongsPageComponent implements OnInit {
   }
 
   expand() {
-    this.dialog.open(SongsPageComponent);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "200%";
+    dialogConfig.height = "auto";
+    this.dialog.open(ReviewComponent, dialogConfig);
   }
 }
