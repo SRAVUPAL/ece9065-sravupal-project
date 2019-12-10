@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { HttpService } from '../http.service';
-import { MatDialog, MatDialogConfig, MatDialogModule} from '@angular/material';
+import { MatDialog, MatDialogConfig, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { ReviewComponent } from '../reviewComponent/reviewComponent.component';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NewSongComponent } from '../newSong/newSong.component';
 
 @Component({
   selector: 'app-songsPage',
@@ -12,22 +14,49 @@ import { ReviewComponent } from '../reviewComponent/reviewComponent.component';
 export class SongsPageComponent implements OnInit {
 
   allSongs: Object;
+  id: any;
+  @Input() reviewComponent: ReviewComponent;
 
-  constructor(private _http: HttpService, private dialog: MatDialog) { }
+  constructor(private _http: HttpService,
+    private dialog: MatDialog,
+    private router: Router) { }
+
+  onButtonClick(): void {
+    this.router.navigate(['/songsPage']);
+  }
+
+  viewSong() {
+    this.router.navigate(['reviewComponent', this.reviewComponent])
+  }
 
   ngOnInit() {
-    this._http.getSongsPage().subscribe(data => {
-      this.allSongs = data;
-      console.log(this.allSongs)
+    this._http.getSongsPage().subscribe((data: any[]) => {
+      this.allSongs = data.sort(function (i, j) {
+        return j.rating - i.rating;
+      })
     });
   }
 
-  expand() {
+  expand(id) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = "200%";
+    dialogConfig.width = "auto";
     dialogConfig.height = "auto";
-    this.dialog.open(ReviewComponent, dialogConfig);
+    let dialogRef: MatDialogRef<ReviewComponent>;
+
+    dialogRef = this.dialog.open(ReviewComponent, dialogConfig);
+    dialogRef.componentInstance.id = id;
+  }
+
+  addNewSong() {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "200%";
+    dialogConfig.height = "200%";
+
+    this.dialog.open(NewSongComponent, dialogConfig);
   }
 }

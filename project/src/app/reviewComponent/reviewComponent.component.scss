@@ -8,13 +8,13 @@ div {
     div {
         background: rgb(238, 238, 238);
         padding: 1em;
-        margin-right: 10px;
-        width: auto;
+        margin-left: 10px;
+        width: 40%;
         height: auto;
         margin-bottom: 1em;
         display: flex;
         flex-direction: column;
-
+        
         p {
             margin: auto;
         }
@@ -50,16 +50,41 @@ div {
         max-width: auto;
         height: 80%;
     }
-    // button {
-    //     line-height: 12px;
-    // //  width: 18px;
-    //  margin-top: auto;
-    //  margin-right: auto;
-    //  position:absolute;
-    //  top:auto;
-    //  right:auto;
-    // }
+    span {
+        line-height: 12px;
+     width: auto;
+     padding: 10px;
+     margin-top: auto;
+     margin-right: auto;
+     position:unset;
+     border: black;
+    //  top:0%;
+    //  right:100%;
+    size: 20px;
+    }
 }
+
+sub{
+    background: rgb(238, 238, 238);
+        padding: 1em;
+        margin-left: 10px;
+        width: auto;
+        height: auto;
+        margin-bottom: 1em;
+        display: flex;
+        flex-direction: column-reverse;
+        div {
+            background: rgb(201, 222, 228);
+            padding: 1em;
+            margin-left: 10px;
+            text-align: left;
+            width: auto;
+            height: auto;
+            margin-bottom: 1em;
+            display: flex;
+            flex-direction: column;
+        }
+    }
 
 /* You can add global styles to this file, and also import other style files */
 

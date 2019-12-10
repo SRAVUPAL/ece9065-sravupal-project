@@ -7,15 +7,17 @@ import { HomeComponent } from './home/home.component';
 import { SongsPageComponent } from './songsPage/songsPage.component';
 import { ReviewComponent } from './reviewComponent/reviewComponent.component';
 import { LoginPageComponent } from './loginPage/loginPage.component';
+import { NewSongComponent } from './newSong/newSong.component';
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MatButtonModule,
   MatExpansionModule,
-  MatDialogModule
+  MatDialogModule,
+  MatFormField
 } from '@angular/material';
 import { Routes } from '@angular/router';
 
@@ -23,7 +25,8 @@ const appRoutes: Routes = [
   {path: 'home', component: HomeComponent },
   {path: 'songsPage', component: SongsPageComponent },
   {path: 'reviewComponent', component: ReviewComponent },
-  {path: 'login', component: LoginPageComponent }
+  {path: 'login', component: LoginPageComponent },
+  {path: 'addSong', component: NewSongComponent }
 ]
 
 var config = {
@@ -41,7 +44,8 @@ var config = {
     HomeComponent,
     SongsPageComponent,
     LoginPageComponent,
-    ReviewComponent
+    ReviewComponent,
+    NewSongComponent
   ],
   imports: [
     BrowserModule,
@@ -53,11 +57,11 @@ var config = {
     AngularFireModule.initializeApp(config),
     AngularFireAuthModule,
     FormsModule,
-    MatDialogModule
-
+    MatDialogModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [ReviewComponent]
+  entryComponents: [ReviewComponent, NewSongComponent]
 })
 export class AppModule { }

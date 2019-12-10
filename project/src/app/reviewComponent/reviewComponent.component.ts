@@ -12,6 +12,8 @@ import { SongsPageComponent } from '../songsPage/songsPage.component';
 export class ReviewComponent implements OnInit {
 
   allSongs: Object;
+  songReviews = [];
+  allReviews: Object;
   id: any;
   @Input() songsPage: SongsPageComponent;
 
@@ -25,15 +27,30 @@ export class ReviewComponent implements OnInit {
 
   ngOnInit() {
     let songId = this.id;
+    let songTitle = "";
     this._http.getOneSongPage(songId).subscribe(data => {
       this.allSongs = data;
-
-      
+      // songTitle = this.allSongs[].title;
+      console.log(songTitle);
+      console.log(songId);
     });
-
-
+    this._http.getReviewsPage().subscribe(data => {
+      // for (let i = 0; i < this.allReviews[i].length(); i++) {
+      // if (this.allReviews[i].title == "dangerous") {
+      this.allReviews = data;
+      // }
+      // }
+    });
   }
   onClose() {
+    alert("Song Deleted");
     this.dialogRef.close();
   }
+
+  deleteSong(id) {
+    this._http.deleteSongPage(id);
+    alert("Song Deleted");
+    this.dialogRef.close();
+  }
+
 }

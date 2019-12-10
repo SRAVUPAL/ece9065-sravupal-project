@@ -1,16 +1,30 @@
 <div mat-dialog-content *ngIf="allSongs">
-        <div *ngIf="allSongs">
-            <img [src]="allSongs.thumbnail" />
-            <p class="songle_title">{{ allSongs.title }}</p>
+
+    <div class="songContent" *ngIf="allSongs">
+        <img [src]="allSongs.thumbnail" />
+        <p class="songle_title">{{ allSongs.title }}</p>
+        <br>
+        <p class="song_data"><strong>Overall Rating: </strong>{{ allSongs.rating }}</p>
+        <p class="song_data"><a>Artist:</a> {{ allSongs.artist }}</p>
+        <p class="song_data"><a>Album:</a> {{ allSongs.album }}</p>
+        <p class="song_data"><a>Length:</a> {{ allSongs.length }}</p>
+        <p class="song_data"><a>Year:</a> {{ allSongs.year }}</p>
+        <p class="song_data"><a>Genre:</a> {{ allSongs.genre }}</p>
+        <p class="song_data"><a>Comment:</a> {{ allSongs.comment }}</p>
+        <span class="mat-raised-button mat-primary" (click)="deleteSong(allSongs._id)">Delete Song</span>
+        <br>
+        <span class="mat-raised-button mat-primary" (click)="editSong(allSongs._id)">Edit Song</span>
+        <br>
+    </div>
+    <h1>Reviews</h1><br>
+    <button mat-icon-button (click)="onClose()">X</button>
+    <sub class="reviewContent" *ngIf="allReviews">
+        <div class="reviewList" *ngFor="let review of allReviews">
+            <p class="review_data"><a>Reviewd by: </a> {{ review.reviwer }}</p>
             <br>
-            <p class="song_data"><strong>Overall Rating: </strong>{{ allSongs.rating }}</p>
-            <p class="song_data"><a>Artist:</a> {{ allSongs.artist }}</p>
-            <p class="song_data"><a>Album:</a> {{ allSongs.album }}</p>
-            <p class="song_data"><a>Length:</a> {{ allSongs.length }}</p>
-            <p class="song_data"><a>Year:</a> {{ allSongs.year }}</p>
-            <p class="song_data"><a>Genre:</a> {{ allSongs.genre }}</p>
-            <p class="song_data"><a>Comment:</a> {{ allSongs.comment }}</p>
-            
+            <p class="review_data"><a>Song name: </a> {{ review.title }}</p>
+            <p class="review_data"><a>Review: </a>{{ review.review }}</p>
+            <p class="review_data"><a>Overall Rating: </a>{{ review.rating }}</p>
         </div>
-        <button mat-icon-button (click)="onClose()">X</button>
+    </sub>
 </div>
