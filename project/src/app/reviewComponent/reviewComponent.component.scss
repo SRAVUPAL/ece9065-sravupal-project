@@ -1,41 +1,67 @@
-ul {
+div {
     list-style-type: none;
-    margin: 0;
-    padding: 0;
+    margin: auto;
+    padding: auto;
     display: flex;
     flex-wrap: wrap;
 
-    li {
+    div {
         background: rgb(238, 238, 238);
         padding: 1em;
         margin-right: 10px;
-        width: 20%;
-        height: 200px;
+        width: auto;
+        height: auto;
         margin-bottom: 1em;
         display: flex;
         flex-direction: column;
 
         p {
-            margin: 0;
+            margin: auto;
         }
 
-        p.name {
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-        p.description {
-            text-transform: uppercase;
-            font-size: .9rem;
-            flex-grow: 1;
-        }
-        p.due {
-            text-transform: uppercase;
-            font-size: .9rem;
-            flex-grow: 1;
-        }p.quantity {
-            text-transform: uppercase;
-            font-size: .9rem;
-            flex-grow: 1;
+        img{
+            size: 10px;
         }
     }
+    .collapsible {
+        background-color: #777;
+        color: white;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+      }
+      
+      .active, .collapsible:hover {
+        background-color: #555;
+      }
+      
+      .content {
+        padding: 0 18px;
+        display: none;
+        overflow: hidden;
+        background-color: #f1f1f1;
 }
+    img {
+        margin-top: auto;
+        max-width: auto;
+        height: 80%;
+    }
+    // button {
+    //     line-height: 12px;
+    // //  width: 18px;
+    //  margin-top: auto;
+    //  margin-right: auto;
+    //  position:absolute;
+    //  top:auto;
+    //  right:auto;
+    // }
+}
+
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

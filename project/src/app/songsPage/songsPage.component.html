@@ -1,8 +1,8 @@
 <h1>All Time Best Songs</h1>
 
 <div *ngIf="allSongs">
-    <div class="songList" id="song" i *ngFor="let song of allSongs">
-        <button mat-raised-button (click)="expand()" [style.background-image]="'url(' + song.thumbnail + ')'">
+    <div class="songList" id="song" *ngFor="let song of allSongs">
+        <button mat-raised-button (click)="expand(song._id)" [style.background-image]="'url(' + song.thumbnail + ')'">
             <p class="songle_title">{{ song.title }}</p>
             <br>
             <p class="song_data"><strong>Overall Rating: </strong>{{ song.rating }}</p>

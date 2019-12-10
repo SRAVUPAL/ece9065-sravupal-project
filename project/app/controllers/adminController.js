@@ -150,7 +150,9 @@ exports.createReview = (req, res, next) => {
     // Create new ReviewData
     const reviewReq = new ReviewData({
         reviwer: String,
-        review: String
+        title: String,
+        review: String,
+        rating: Number
     });
 
     // Save ReviewData in the database
@@ -210,7 +212,9 @@ exports.updateReview = (req, res, next) => {
     // Find review and update it with the request body
     ReviewData.findByIdAndUpdate(req.params.reviewId, {
         reviwer: String,
-        review: String
+        title: String,
+        review: String,
+        rating: Number
     }, { new: true })
         .then(reviewReq => {
             if (!reviewReq) {

@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { SongsPageComponent } from './songsPage/songsPage.component';
+import { ReviewComponent } from './reviewComponent/reviewComponent.component';
 import { LoginPageComponent } from './loginPage/loginPage.component';
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
@@ -16,6 +17,14 @@ import {
   MatExpansionModule,
   MatDialogModule
 } from '@angular/material';
+import { Routes } from '@angular/router';
+
+const appRoutes: Routes = [
+  {path: 'home', component: HomeComponent },
+  {path: 'songsPage', component: SongsPageComponent },
+  {path: 'reviewComponent', component: ReviewComponent },
+  {path: 'login', component: LoginPageComponent }
+]
 
 var config = {
   apiKey: "AIzaSyAsNWTn3cRegx0VGi50kGIHFF3ocfH8cWo",
@@ -31,7 +40,8 @@ var config = {
     AppComponent,
     HomeComponent,
     SongsPageComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    ReviewComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +58,6 @@ var config = {
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [SongsPageComponent]
+  entryComponents: [ReviewComponent]
 })
 export class AppModule { }

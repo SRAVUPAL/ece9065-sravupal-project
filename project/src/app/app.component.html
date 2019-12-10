@@ -1,97 +1,15 @@
-<!-- <header>
+<header>
   <div class="container">
     <a routerLink="/" class="logo">Song Review</a>
     <nav>
       <ul>
-        <li><a href="#" routerLink="/" >Home</a></li>
-        <li><a href="#" routerLink="/songsPage" >Songs</a></li>
-        <li><a href="#" routerLink="/loginPage" >Login/Sign up</a></li>
+        <li><a href="#" routerLink="/">Home</a></li>
+        <li><a href="#" routerLink="/loginPage">Login/Signup</a></li>
       </ul>
     </nav>
   </div>
-</header> -->
+</header>
 
-<body>
-  <div class="container">
-    <router-outlet></router-outlet>
-  </div>
-  <div class="row">
-    <div class="text-center" style="width: 100%;margin: 20px;">
-    </div>
-    <div class="" style="width: 500px; margin: auto">
-      <div class="card">
-        <!-- When Uses is Not Logged In -->
-        <div class="card-body" *ngIf="!userDetails">
-          <div class="row">
-            <div class="col-sm-12 text-center">
-              <div class="btn-group">
-                <button type="button" class="btn" [ngClass]="{'btn-primary
-                active': selectedVal == 'login' }" (click)="onValChange('login')"><strong>Login</strong></button>
-                <button type="button" class="btn" [ngClass]="{'btn-primary
-                active': selectedVal == 'register' }"
-                  (click)="onValChange('register')"><strong>Register</strong></button>
-              </div>
-
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" class="form-control" [(ngModel)]="emailInput" id="email" placeholder="Email">
-          </div>
-          <div class="form-group" *ngIf="!isForgotPassword">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" [(ngModel)]="passwordInput" id="password"
-              placeholder="Password">
-          </div>
-          <div class="form-group" *ngIf="!isForgotPassword">
-
-            <span *ngIf="selectedVal == 'login'; else elseBlock">
-              <button type="button" class="btn btn-primary" (click)="loginUser()">Log
-                In</button>
-            </span>
-            <ng-template #elseBlock>
-              <button type="button" class="btn btn-primary" (click)="registerUser()">Register</button>
-            </ng-template>
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            <a href="javascript:void(0)" (click)="this.isForgotPassword= true;">Forgot
-              Password?</a>
-
-          </div>
-          <div class="form-group" *ngIf="isForgotPassword">
-
-            <button type="button" class="btn" (click)="this.isForgotPassword=
-            false;">Cancel</button>
-            <button type="button" class="btn btn-primary" (click)="forgotPassword()">Get email to reset
-              passowrd</button>
-          </div>
-          <div class="form-group text-center">
-            <img src="../assets/images/googlebtn.png" alt="" srcset="" (click)="googleLogin()" style="cursor: pointer;">
-          </div>
-
-        </div>
-
-        <!-- When Uses is Logged In using Email or Google Account -->
-        <div class="container" *ngIf="userDetails">
-          <header>
-            <div>
-              <a routerLink="/" class="logo">Song Review</a>
-              <nav>
-                <ul>
-                  <li><a href="#" routerLink="/">Home</a></li>
-                  <li><a href="#" routerLink="/songsPage">Songs</a></li>
-                  <li><a href="#" routerLink="/loginPage">Login/Sign up</a></li>
-                </ul>
-              </nav>
-            </div>
-          </header>
-        </div>
-      </div>
-      <div class="alert alert-{{responseMessageType}}" role="alert" *ngIf="responseMessage.length">
-        {{responseMessage}}
-      </div>
-    </div>
-  </div>
-</body>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

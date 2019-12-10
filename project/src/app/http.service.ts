@@ -10,6 +10,11 @@ export class HttpService {
   getSongsPage() {
     return this.http.get('http://localhost:3000/admin/songs')
   }
+
+  getOneSongPage(id) {
+    return this.http.get('http://localhost:3000/admin/songs/'+id)
+  }
+
   postSongsPage(Hrequest) {
     // return this.http.post('http://localhost:3000/api/items/', Hrequest)
   }

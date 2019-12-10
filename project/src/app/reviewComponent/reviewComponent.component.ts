@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpService} from '../http.service';
+import { Component, OnInit, Input } from '@angular/core';
+import { HttpService } from '../http.service';
+import { MatDialogRef, MatDialogModule } from '@angular/material';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SongsPageComponent } from '../songsPage/songsPage.component';
 
 @Component({
   selector: 'app-reviewComponent',
@@ -8,11 +11,29 @@ import { HttpService} from '../http.service';
 })
 export class ReviewComponent implements OnInit {
 
-  wizards: Object;
+  allSongs: Object;
+  id: any;
+  @Input() songsPage: SongsPageComponent;
 
-  constructor(private _http: HttpService) { }
+  constructor(private _http: HttpService,
+    private dialogRef: MatDialogRef<ReviewComponent>,
+    private router: Router) { }
 
-  ngOnInit() {
+  onButtonClick(): void {
+    this.router.navigate(['/songsPage']);
   }
 
+  ngOnInit() {
+    let songId = this.id;
+    this._http.getOneSongPage(songId).subscribe(data => {
+      this.allSongs = data;
+
+      
+    });
+
+
+  }
+  onClose() {
+    this.dialogRef.close();
+  }
 }

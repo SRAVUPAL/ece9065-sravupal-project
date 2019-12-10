@@ -1,41 +1,132 @@
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap');
 
-    li {
-        background: rgb(238, 238, 238);
-        padding: 1em;
-        margin-right: 10px;
-        width: 20%;
-        height: 200px;
-        margin-bottom: 1em;
-        display: flex;
-        flex-direction: column;
+body {
+  background: linear-gradient(45deg,  rgba(242, 245, 66, 0.8) 100%,rgba(206, 245, 66, 0.397) 100%);
+  color: gray;
+  font-family: 'Nunito', 'sans-serif';
+  font-size: base-font-size;
+  line-height: base-line-height;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-        p {
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+  background: rgba(black, 0.8);
+  width: 100%;
+  height: 100%;
+}
+
+.form {
+  z-index: 15;
+  position: relative;
+  background: white;
+  width: max-width;
+  border-radius: 4px;
+  box-shadow: 0 0 30px rgba(black, .1);
+  box-sizing: border-box;
+  margin: 100px auto 10px;
+  overflow: hidden;
+}
+    input {
+      outline: none;
+      display: block;
+      background: rgba(black, 0.1);
+      width: 100%;
+      border: 0;
+      border-radius: 4px;
+      box-sizing: border-box;
+      padding: 12px 20px;
+      color: gray;
+      font-family: inherit;
+      font-size: inherit;
+      font-weight: semibold;
+      line-height: inherit;
+      transition: 0.3s ease;
+}
+
+    button {
+      outline: none;
+      background:  rgb(94, 116, 223);
+      width: 100%;
+      border: 0;
+      border-radius: 4px;
+      padding: 12px 20px;
+      color: rgb(43, 48, 73);
+      font-family: inherit;
+      font-size: inherit;
+      font-weight: semibold;
+      line-height: inherit;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+      input[type='checkbox'] {
+        display: inline-block;
+        width: auto;
+        margin: 0 10px 0 0;
+      }
+
+    h1 {
+      padding: 4px 0;
+      color: accent;
+      font-size: 24px;
+      font-weight: bold;
+      text-transform: uppercase;
+
+    }
+
+  a {
+    color: rgb(20, 19, 19);
+    font-size: 12px;
+    text-decoration: none;
+    text-shadow: 1px 2px 0 rgba(black, .1);
+
+}
+
+$primary: rgb(133, 118, 42);
+
+// body {
+//     margin: 0;
+//     font-family: 'Nunito', 'sans-serif';
+//     font-size: 18px;
+// }
+
+.container {
+    width: 100%;
+    margin: 0 0;
+}
+
+header {
+    background: $primary;
+    padding: 1em 0;
+    width: auto;
+
+    a {
+        color: white;
+        text-decoration: none;
+    }
+    a.logo {
+        font-weight: bold;
+    }
+
+    nav {
+        float: right;
+
+        ul {
+            list-style-type: none;
             margin: 0;
-        }
+            display: flex;
 
-        p.name {
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-        p.description {
-            text-transform: uppercase;
-            font-size: .9rem;
-            flex-grow: 1;
-        }
-        p.due {
-            text-transform: uppercase;
-            font-size: .9rem;
-            flex-grow: 1;
-        }p.quantity {
-            text-transform: uppercase;
-            font-size: .9rem;
-            flex-grow: 1;
+            li a {
+                padding: 1em;
+
+                &:hover {
+                    background: darken($primary, 10%);
+                }
+            }
         }
     }
 }
