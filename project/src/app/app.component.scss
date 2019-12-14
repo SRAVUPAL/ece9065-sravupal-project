@@ -1,14 +1,33 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap');
 
 body {
-  background: linear-gradient(45deg,  rgba(242, 245, 66, 0.8) 100%,rgba(206, 245, 66, 0.397) 100%);
+  background: linear-gradient(45deg,  rgba(232, 233, 208, 0.8) 100%,rgb(216, 224, 187) 100%);
   color: gray;
   font-family: 'Nunito', 'sans-serif';
   font-size: base-font-size;
   line-height: base-line-height;
+  width: auto;
+  height: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+div {
+  list-style-type: none;
+  margin: auto;
+  padding: 5px;
+  display: flex;
+  flex-wrap: wrap;
+
+  div {
+      background: rgb(204, 202, 202);
+      padding: 1em;
+      margin-right: 10px;
+      width: 30%;
+      height: 200px;
+      margin-bottom: 1em;
+      display: flex;
+      flex-direction: column;}}
 
 .overlay {
   position: absolute;
@@ -48,21 +67,17 @@ body {
       transition: 0.3s ease;
 }
 
-    button {
-      outline: none;
-      background:  rgb(94, 116, 223);
-      width: 100%;
-      border: 0;
-      border-radius: 4px;
-      padding: 12px 20px;
-      color: rgb(43, 48, 73);
-      font-family: inherit;
-      font-size: inherit;
-      font-weight: semibold;
-      line-height: inherit;
-      text-transform: uppercase;
-      cursor: pointer;
-    }
+button {
+  border: 2px solid black;
+  background-color: #dfe0d1;
+  background-repeat: no-repeat;
+  background-size: 200px 100%;
+  color: rgb(12, 2, 2);
+  box-shadow:0 1px 2px #5e5d5b;
+  text-align: end;
+  line-height: 65px;
+  // line-height: 65px;
+}
       input[type='checkbox'] {
         display: inline-block;
         width: auto;
@@ -80,7 +95,7 @@ body {
 
   a {
     color: rgb(20, 19, 19);
-    font-size: 12px;
+    font-size: 16px;
     text-decoration: none;
     text-shadow: 1px 2px 0 rgba(black, .1);
 
@@ -130,3 +145,25 @@ header {
         }
     }
 }
+sub{
+  background: rgb(190, 188, 188);
+      // padding: 1em;
+      margin-left: 10px;
+      width: 100%;
+      height: auto;
+      margin-bottom: 1em;
+      display: flex;
+      flex-direction: column-reverse;
+      div {
+          background: rgb(201, 222, 228);
+          // padding: 1em;
+          margin-left: 50px;
+          text-align: left;
+          font-size: 18;
+          width: 100%;
+          height: auto;
+          margin-bottom: 1em;
+          display: flex;
+          flex-direction: column;
+      }
+  }

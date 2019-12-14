@@ -20,11 +20,18 @@
     <button mat-icon-button (click)="onClose()">X</button>
     <sub class="reviewContent" *ngIf="allReviews">
         <div class="reviewList" *ngFor="let review of allReviews">
-            <p class="review_data"><a>Reviewd by: </a> {{ review.reviwer }}</p>
-            <br>
-            <p class="review_data"><a>Song name: </a> {{ review.title }}</p>
-            <p class="review_data"><a>Review: </a>{{ review.review }}</p>
-            <p class="review_data"><a>Overall Rating: </a>{{ review.rating }}</p>
+            <div *ngIf="review.title==allSongs.title; else notShow">
+                <p class="review_data"><a>Reviewd by: </a> {{ review.reviwer }}</p>
+                <br>
+                <p class="review_data"><a>Song name: </a> {{ review.title }}</p>
+                <p class="review_data"><a>Review: </a>{{ review.review }}</p>
+                <p class="review_data"><a>Overall Rating: </a>{{ review.rating }}</p>
+            </div>
+            <ng-template #notShow>
+                <p>
+                    ..............
+                </p>
+            </ng-template>
         </div>
     </sub>
 </div>

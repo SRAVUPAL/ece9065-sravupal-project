@@ -8,6 +8,7 @@ import { SongsPageComponent } from './songsPage/songsPage.component';
 import { ReviewComponent } from './reviewComponent/reviewComponent.component';
 import { LoginPageComponent } from './loginPage/loginPage.component';
 import { NewSongComponent } from './newSong/newSong.component';
+import { PlaylistComponent } from './playlistComponent/playlistComponent.component';
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -22,11 +23,12 @@ import {
 import { Routes } from '@angular/router';
 
 const appRoutes: Routes = [
-  {path: 'home', component: HomeComponent },
-  {path: 'songsPage', component: SongsPageComponent },
-  {path: 'reviewComponent', component: ReviewComponent },
-  {path: 'login', component: LoginPageComponent },
-  {path: 'addSong', component: NewSongComponent }
+  { path: 'home', component: HomeComponent },
+  { path: 'songsPage', component: SongsPageComponent },
+  { path: 'reviewComponent', component: ReviewComponent },
+  { path: 'login', component: LoginPageComponent },
+  { path: 'addSong', component: NewSongComponent },
+  { path: 'playlist', component: PlaylistComponent }
 ]
 
 var config = {
@@ -45,7 +47,8 @@ var config = {
     SongsPageComponent,
     LoginPageComponent,
     ReviewComponent,
-    NewSongComponent
+    NewSongComponent,
+    PlaylistComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,7 @@ var config = {
     MatDialogModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [LoginPageComponent,AppComponent],
   bootstrap: [AppComponent],
   entryComponents: [ReviewComponent, NewSongComponent]
 })

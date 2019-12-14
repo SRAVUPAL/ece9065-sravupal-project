@@ -1,0 +1,84 @@
+div {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+
+    div {
+        background: rgb(238, 238, 238);
+        padding: 1em;
+        margin-right: 10px;
+        width: 30%;
+        height: 200px;
+        margin-bottom: 1em;
+        display: flex;
+        flex-direction: column;
+
+        p {
+            margin: 0;
+        }
+
+        p.songle_title {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        p.description {
+            text-transform: uppercase;
+            font-size: .9rem;
+            flex-grow: 1;
+        }
+        p.due {
+            text-transform: uppercase;
+            font-size: .9rem;
+            flex-grow: 1;
+        }p.quantity {
+            text-transform: uppercase;
+            font-size: .9rem;
+            flex-grow: 1;
+        }
+    }
+    .collapsible {
+        background-color: #777;
+        color: white;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+      }
+      
+      .active, .collapsible:hover {
+        background-color: #555;
+      }
+      
+      .content {
+        padding: 0 18px;
+        display: none;
+        overflow: hidden;
+        background-color: #f1f1f1;
+}
+    img {
+        margin-top: auto;
+        max-width: auto;
+        height: 80%;
+    }
+    button {
+        border: 2px solid black;
+        background-color: #dfe0d1;
+        background-repeat: no-repeat;
+        background-size: 200px 100%;
+        color: rgb(12, 2, 2);
+        box-shadow:0 1px 2px #5e5d5b;
+        text-align: end;
+        line-height: 65px;
+        // line-height: 65px;
+    }
+}
+
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

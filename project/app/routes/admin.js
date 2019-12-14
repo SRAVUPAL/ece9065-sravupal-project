@@ -59,7 +59,7 @@ module.exports = (app) => {
      */
 
     // Create a new Access
-    app.post('/admin/access', special.createReview);
+    app.post('/admin/access', special.createAccess);
 
     // Retrieve all Access
     app.get('/admin/access', special.findAllAccess);
@@ -72,5 +72,24 @@ module.exports = (app) => {
 
     // Delete a Access with accessId
     app.delete('/admin/access/:accessId', special.deleteAccess);
+
+    /*
+     *Playlist
+     */
+
+    // Create a new Playlist
+    app.post('/admin/playlist', special.createPlaylist);
+
+    // Retrieve all Playlist
+    app.get('/admin/playlist', special.findAllPlaylist);
+
+    // Retrieve a single Playlist with noteId
+    app.get('/admin/playlist/:playlistId', special.findOnePlaylist);
+
+    // Update a Playlist with playlistId
+    app.put('/admin/playlist/:playlistId', special.updatePlaylist);
+
+    // Delete a Playlist with playlistId
+    app.delete('/admin/playlist/:playlistId', special.deletePlaylist);
 
 }

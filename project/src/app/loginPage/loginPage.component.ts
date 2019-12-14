@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthenticationService } from '../service/authentication.service';
+import{ AppComponent } from '../app.component'
+
 
 @Component({
   selector: 'app-loginPage',
@@ -11,7 +13,7 @@ import { AuthenticationService } from '../service/authentication.service';
 export class LoginPageComponent {
 
   title = 'firebaseLogin';
- 
+
   selectedVal: string;
   responseMessage: string = '';
   responseMessageType: string = '';
@@ -19,15 +21,18 @@ export class LoginPageComponent {
   passwordInput: string;
   isForgotPassword: boolean;
   userDetails: any;
+  allUsers: Object;
+  userClass: any;
 
   constructor(
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private _http: HttpService
   ) {
     this.selectedVal = 'login';
     this.isForgotPassword = false;
- 
+
   }
- 
+
   // Comman Method to Show Message and Hide after 2 seconds
   showMessage(type, msg) {
     this.responseMessageType = type;
@@ -36,18 +41,18 @@ export class LoginPageComponent {
       this.responseMessage = "";
     }, 2000);
   }
- 
+
   // Called on switching Login/ Register tabs
   public onValChange(val: string) {
     this.showMessage("", "");
     this.selectedVal = val;
   }
- 
+
   // Check localStorage is having User Data
   isUserLoggedIn() {
     this.userDetails = this.authService.isUserLoggedIn();
   }
- 
+
   // SignOut Firebase Session and Clean LocalStorage
   logoutUser() {
     this.authService.logout()
@@ -59,7 +64,7 @@ export class LoginPageComponent {
         this.showMessage("danger", err.message);
       });
   }
- 
+
   // Login user with  provided Email/ Password
   loginUser() {
     this.responseMessage = "";
@@ -68,16 +73,17 @@ export class LoginPageComponent {
         console.log(res);
         this.showMessage("success", "Successfully Logged In!");
         this.isUserLoggedIn();
+        this.checkUser();
       }, err => {
         this.showMessage("danger", err.message);
       });
   }
- 
+
   // Register user with  provided Email/ Password
   registerUser() {
     this.authService.register(this.emailInput, this.passwordInput)
       .then(res => {
- 
+
         // Send Varification link in email
         this.authService.sendEmailVerification().then(res => {
           console.log(res);
@@ -87,13 +93,13 @@ export class LoginPageComponent {
           this.showMessage("danger", err.message);
         });
         this.isUserLoggedIn();
- 
- 
+
+
       }, err => {
         this.showMessage("danger", err.message);
       });
   }
- 
+
   // Send link on given email to reset password
   forgotPassword() {
     this.authService.sendPasswordResetEmail(this.emailInput)
@@ -105,7 +111,7 @@ export class LoginPageComponent {
         this.showMessage("danger", err.message);
       });
   }
- 
+
   // Open Popup to Login with Google Account
   googleLogin() {
     this.authService.loginWithGoogle()
@@ -117,5 +123,22 @@ export class LoginPageComponent {
         this.showMessage("danger", err.message);
       });
   }
- 
+
+  checkUser() {
+    this._http.getUsers().subscribe((data: any[]) => {
+      this.allUsers = data;
+      let i;
+      for (let user of Object.keys(this.allUsers)) {
+        i = this.allUsers[user].token;
+      }
+      if (i) {
+        this.userClass = i;
+      }
+    });
+  }
+  hidePage() {
+    if(this.userClass == "admin"){
+      console.log(this.userClass)
+    };
+  }
 }

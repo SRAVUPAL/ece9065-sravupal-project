@@ -60,5 +60,9 @@ export class HttpService {
   getReviewsPage() {
     return this.http.get('http://localhost:3000/admin/reviews')
   }
+
+  getUsers() {
+    return this.http.get('http://localhost:3000/admin/access')
+  }
 }
 

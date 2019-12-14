@@ -1,16 +1,5 @@
-<h1>All Time Best Songs</h1>
+<h1>Your Favourite Songs</h1>
 
-<mat-expansion-panel>
-    <mat-expansion-panel-header>
-        <mat-panel-title>
-            Add New Songs
-        </mat-panel-title>
-        <mat-panel-description>
-            song description
-        </mat-panel-description>
-    </mat-expansion-panel-header>
-    <button mat-raised-button (click)="addNewSong()">Add Song</button>
-</mat-expansion-panel>
 <div *ngIf="allSongs">
     <div class="songList" id="song" *ngFor="let song of allSongs">
         <button mat-raised-button (click)="expand(song._id)" [style.background-image]="'url(' + song.thumbnail + ')'">
