@@ -7,12 +7,12 @@ div {
 
     div {
         background: rgb(238, 238, 238);
-        padding: 1em;
+        padding: 5%;
         margin-right: 10px;
-        width: 30%;
-        height: 200px;
+        width: 50%;
+        height: auto;
         margin-bottom: 1em;
-        display: flex;
+        display: inherit;
         flex-direction: column;
 
         p {
@@ -81,4 +81,7 @@ div {
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { 
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}

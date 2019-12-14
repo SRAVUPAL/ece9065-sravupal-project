@@ -64,5 +64,13 @@ export class HttpService {
   getUsers() {
     return this.http.get('http://localhost:3000/admin/access')
   }
+
+  getPlaylists() {
+    return this.http.get('http://localhost:3000/admin/playlist')
+  }
+
+  getAllPlaylistss() {
+    return this.http.get('http://localhost:3000/admin/allPlaylists')
+  }
 }
 

@@ -4,6 +4,7 @@ import { MatDialog, MatDialogConfig, MatDialogRef, MatDialogModule } from '@angu
 import { ReviewComponent } from '../reviewComponent/reviewComponent.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NewSongComponent } from '../newSong/newSong.component';
+import { PlaylistComponent } from '../playlistComponent/playlistComponent.component';
 
 @Component({
   selector: 'app-songsPage',
@@ -58,5 +59,16 @@ export class SongsPageComponent implements OnInit {
     dialogConfig.height = "200%";
 
     this.dialog.open(NewSongComponent, dialogConfig);
+  }
+
+  viewPlaylist() {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "200%";
+    dialogConfig.height = "200%";
+
+    this.dialog.open(PlaylistComponent, dialogConfig);
   }
 }

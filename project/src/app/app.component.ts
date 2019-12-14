@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from './http.service';
 import { TouchSequence } from 'selenium-webdriver';
+import { MatDialog, MatDialogConfig, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import 'rxjs';
 import { interval, Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { LoginPageComponent } from './loginPage/loginPage.component';
+import { ReviewComponent } from './reviewComponent/reviewComponent.component';
 
 @Component({
   selector: 'app-root',
@@ -21,8 +22,7 @@ export class AppComponent implements OnInit {
   userClass: any;
 
   constructor(private _http: HttpService,
-    private loginComponent: LoginPageComponent
-
+    private dialog: MatDialog
   ) {
 
     //   interval(2000).switchMap(() => this._http.getSongsPage()).map((data: any[]) => data)
@@ -53,5 +53,16 @@ export class AppComponent implements OnInit {
   }
   showPage() {
     this.show = "show";
+  }
+  expand(id) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "auto";
+    dialogConfig.height = "auto";
+    let dialogRef: MatDialogRef<ReviewComponent>;
+
+    dialogRef = this.dialog.open(ReviewComponent, dialogConfig);
+    dialogRef.componentInstance.id = id;
   }
 }

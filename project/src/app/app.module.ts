@@ -20,7 +20,7 @@ import {
   MatDialogModule,
   MatFormField
 } from '@angular/material';
-import { Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -51,6 +51,9 @@ var config = {
     PlaylistComponent
   ],
   imports: [
+    RouterModule.forRoot(
+      appRoutes
+    ),
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

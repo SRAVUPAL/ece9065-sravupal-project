@@ -19,7 +19,7 @@
     <h1>Reviews</h1><br>
     <button mat-icon-button (click)="onClose()">X</button>
     <sub class="reviewContent" *ngIf="allReviews">
-        <div class="reviewList" *ngFor="let review of allReviews">
+        <div class="reviewList" *ngFor="let review of allReviews, index as i">
             <div *ngIf="review.title==allSongs.title; else notShow">
                 <p class="review_data"><a>Reviewd by: </a> {{ review.reviwer }}</p>
                 <br>

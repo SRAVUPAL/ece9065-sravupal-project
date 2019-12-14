@@ -1,11 +1,32 @@
-<h1>Your Favourite Songs</h1>
+<h1>Your Selected Songs</h1>
 
-<div *ngIf="allSongs">
-    <div class="songList" id="song" *ngFor="let song of allSongs">
-        <button mat-raised-button (click)="expand(song._id)" [style.background-image]="'url(' + song.thumbnail + ')'">
-            <p class="songle_title">{{ song.title }}</p>
-            <br>
-            <p class="song_data"><strong>Overall Rating: </strong>{{ song.rating }}</p>
-        </button>
+<!-- <mat-expansion-panel>
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            Add New Songs
+        </mat-panel-title>
+        <mat-panel-description>
+            song description
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    <button mat-raised-button (click)="addNewSong()">Add Song</button>
+</mat-expansion-panel> -->
+
+<div *ngIf="playlists">
+    <div class="songList" id="song" *ngFor="let playlist of playlists, index as i">
+        <div *ngIf="i==0">
+            <button mat-raised-button (click)="expand(playlist._id)">
+                <h1>{{ playlist.name }}</h1>
+                <div *ngFor="let playlist of playlists, index as i"></div>
+                <h3>{{ playlist.name }} description</h3>
+            </button>
+            <div mat-dialog-content (click)="expand(playlist._id)" *ngIf="playlist._id">
+
+                <p class="songle_title"><strong>Song title: </strong>{{ playlist.title }}</p>
+                <br>
+                <p class="song_data"><strong>Album: </strong>{{ playlist.album }}</p>
+            </div>
+        </div>
     </div>
+    <button mat-icon-button (click)="onClose()">X</button>
 </div>

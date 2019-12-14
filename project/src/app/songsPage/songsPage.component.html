@@ -3,13 +3,14 @@
 <mat-expansion-panel>
     <mat-expansion-panel-header>
         <mat-panel-title>
-            Add New Songs
+            Menu
         </mat-panel-title>
         <mat-panel-description>
-            song description
+            more options
         </mat-panel-description>
     </mat-expansion-panel-header>
     <button mat-raised-button (click)="addNewSong()">Add Song</button>
+    <button mat-raised-button (click)="viewPlaylist()">Playlist</button>
 </mat-expansion-panel>
 <div *ngIf="allSongs">
     <div class="songList" id="song" *ngFor="let song of allSongs">

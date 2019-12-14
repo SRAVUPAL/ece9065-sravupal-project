@@ -5,8 +5,8 @@
       <ul>
         <li><a href="#" routerLink="/">Home</a></li>
         <li><a href="#" routerLink="/loginPage">Login/Signup</a></li>
-        <li *ngIf="admin"><a href="#" routerLink="/songsPage">Songs</a></li>
-        <li *ngIf="user"><a href="#" routerLink="/playlistComponent">playlist</a></li>
+        <li *ngIf="user"><a href="#" routerLink="/songsPage">Songs</a></li>
+        <li *ngIf="user"><a href="#" routerLink="/playlist">Playlist</a></li>
       </ul>
     </nav>
   </div>
@@ -20,7 +20,7 @@
   <h1>Welcome to Song Reviewer site</h1>
   <h2>Here are the List of all Songs</h2>
   <div *ngIf="allSongs">
-    <div class="songList" id="song" *ngFor="let song of allSongs">
+    <div class="songList" (click)="expand(song._id)" id="song" *ngFor="let song of allSongs">
       <button mat-raised-button [style.background-image]="'url(' + song.thumbnail + ')'">
         <p class="songle_title">{{ song.title }}</p>
         <br>
@@ -35,7 +35,7 @@
       <br>
       <p class="review_data"><a>Song name: </a> {{ review.title }}</p>
       <p class="review_data"><a>Review: </a>{{ review.review }}</p>
-      <p class="review_data"><a>Overall Rating: </a>{{ review.rating }}</p>
+      <p class="review_data"><a>Rating: </a>{{ review.rating }}</p>
     </div>
   </sub>
 </body>

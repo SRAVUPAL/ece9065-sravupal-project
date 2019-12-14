@@ -3,6 +3,7 @@ const ReviewData = require('../schema/reviews.js');
 const RatingData = require('../schema/ratings.js');
 const AccessData = require('../schema/access.js');
 const PlaylistData = require('../schema/playlist.js');
+const AllPlaylistsData = require('../schema/allPlaylists.js');
 
 // Create and Save a new SongData
 exports.createSong = (req, res, next) => {
@@ -608,6 +609,127 @@ exports.deletePlaylist = (req, res, next) => {
             }
             return res.status(500).send({
                 message: "Could not delete playlist with id " + req.params.playlistId
+            });
+        });
+};
+
+//CRUD operations for allPlaylists
+
+// Create and Save a new AllPlaylistsData
+exports.createAllPlaylists = (req, res, next) => {
+    // Validate request
+    if (!req.body.content) {
+        return res.status(400).send({
+            message: "AllPlaylistsData content can not be empty"
+        });
+    }
+
+    // Create new AllPlaylistsData
+    const allPlaylistsReq = new AllPlaylistsData({
+        name: String,
+        userid: String,
+        description: String,
+        privacy: String
+    });
+
+    // Save AllPlaylistsData in the database
+    allPlaylistsReq.save()
+        .then(data => {
+            res.send(data);
+        }).catch(err => {
+            res.status(500).send({
+                message: err.message || "Some error occurred while creating the AllPlaylistsData."
+            });
+        });
+};
+
+// Retrieve and return all allPlaylistss from the database.
+exports.findAllAllPlaylists = (req, res, next) => {
+    AllPlaylistsData.find()
+        .then(allPlaylists => {
+            res.send(allPlaylists);
+        }).catch(err => {
+            res.status(500).send({
+                message: err.message || "Some error occurred while retrieving AllPlaylistsData."
+            });
+        });
+};
+
+// Find a single allPlaylists with a allPlaylistsId
+exports.findOneAllPlaylists = (req, res, next) => {
+    AllPlaylistsData.findById(req.params.allPlaylistsId)
+        .then(allPlaylistsReq => {
+            if (!allPlaylistsReq) {
+                return res.status(404).send({
+                    message: "AllPlaylistsData not found with id " + req.params.allPlaylistsId
+                });
+            }
+            res.send(allPlaylistsReq);
+        }).catch(err => {
+            if (err.kind === 'ObjectId') {
+                return res.status(404).send({
+                    message: "AllPlaylistsData not found with id " + req.params.allPlaylistsId
+                });
+            }
+            return res.status(500).send({
+                message: "Error retrieving allPlaylists with id " + req.params.allPlaylistsId
+            });
+        });
+};
+
+// Update a allPlaylists identified by the allPlaylistsId in the request
+exports.updateAllPlaylists = (req, res, next) => {
+    // Validate Request
+    if (!req.body.content) {
+        return res.status(400).send({
+            message: "AllPlaylistsData content can not be empty"
+        });
+    }
+
+    // Find allPlaylists and update it with the request body
+    AllPlaylistsData.findByIdAndUpdate(req.params.allPlaylistsId, {
+        name: String,
+        userid: String,
+        description: String,
+        privacy: String
+    }, { new: true })
+        .then(allPlaylistsReq => {
+            if (!allPlaylistsReq) {
+                return res.status(404).send({
+                    message: "AllPlaylistsData not found with id " + req.params.allPlaylistsId
+                });
+            }
+            res.send(allPlaylistsReq);
+        }).catch(err => {
+            if (err.kind === 'ObjectId') {
+                return res.status(404).send({
+                    message: "AllPlaylistsData not found with id " + req.params.allPlaylistsId
+                });
+            }
+            return res.status(500).send({
+                message: "Error updating allPlaylists with id " + req.params.allPlaylistsId
+            });
+        });
+};
+
+// Delete a allPlaylists with the specified allPlaylistsId in the request
+exports.deleteAllPlaylists = (req, res, next) => {
+    AllPlaylistsData.findByIdAndRemove(req.params.allPlaylistsId)
+        .then(allPlaylistsReq => {
+            if (!allPlaylistsReq) {
+                return res.status(404).send({
+                    message: "AllPlaylistsData not found with id " + req.params.allPlaylistsId
+                });
+            }
+            res.send({ message: "AllPlaylistsData deleted successfully!" });
+        }).catch(err => {
+            if (err.kind === 'ObjectId' || err.name === 'NotFound') {
+                return res.status(404).send({
+                    message: "AllPlaylistsData not found with id " + req.params.allPlaylistsId
+                });
+            }
+            return res.status(500).send({
+                message: "Could not delete allPlaylists with id " + req.params.allPlaylistsId
             });
         });
 };

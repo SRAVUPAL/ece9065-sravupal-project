@@ -13,7 +13,7 @@ import { NewSongComponent } from '../newSong/newSong.component';
 
 export class PlaylistComponent implements OnInit {
 
-  allSongs: Object;
+  playlists: Object;
   id: any;
   @Input() reviewComponent: ReviewComponent;
 
@@ -30,10 +30,8 @@ export class PlaylistComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._http.getSongsPage().subscribe((data: any[]) => {
-      this.allSongs = data.sort(function (i, j) {
-        return j.rating - i.rating;
-      })
+    this._http.getPlaylists().subscribe((data: any[]) => {
+      this.playlists = data;
     });
   }
 
@@ -43,9 +41,9 @@ export class PlaylistComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.width = "auto";
     dialogConfig.height = "auto";
-    let dialogRef: MatDialogRef<ReviewComponent>;
+    let dialogRef: MatDialogRef<PlaylistComponent>;
 
-    dialogRef = this.dialog.open(ReviewComponent, dialogConfig);
+    dialogRef = this.dialog.open(PlaylistComponent, dialogConfig);
     dialogRef.componentInstance.id = id;
   }
 
@@ -58,5 +56,8 @@ export class PlaylistComponent implements OnInit {
     dialogConfig.height = "200%";
 
     this.dialog.open(NewSongComponent, dialogConfig);
+  }
+  onClose() {
+    // this.dialogRef.close();
   }
 }

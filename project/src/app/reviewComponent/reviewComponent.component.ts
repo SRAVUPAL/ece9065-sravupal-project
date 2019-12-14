@@ -43,7 +43,6 @@ export class ReviewComponent implements OnInit {
     });
   }
   onClose() {
-    alert("Song Deleted");
     this.dialogRef.close();
   }
 

@@ -66,6 +66,11 @@
                 <div class="container" *ngIf="userDetails">
                     <button mat-raised-button><a href="#" routerLink="/songsPage">Songs</a>
                     </button>
+                    <button mat-raised-button><a href="#" routerLink="/playlist">Playlists</a>
+                    </button>
+                </div>
+                <div class="container">
+                    <router-outlet></router-outlet>
                 </div>
             </div>
             <div class="alert alert-{{responseMessageType}}" role="alert" *ngIf="responseMessage.length">

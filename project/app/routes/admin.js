@@ -92,4 +92,22 @@ module.exports = (app) => {
     // Delete a Playlist with playlistId
     app.delete('/admin/playlist/:playlistId', special.deletePlaylist);
 
+    /*
+     *All Playlists
+     */
+
+    // Create a new Playlist
+    app.post('/admin/allPlaylists', special.createAllPlaylists);
+
+    // Retrieve all AllPlaylists
+    app.get('/admin/allPlaylists', special.findAllAllPlaylists);
+
+    // Retrieve a single AllPlaylists with noteId
+    app.get('/admin/allPlaylists/:allPlaylistsId', special.findOneAllPlaylists);
+
+    // Update a AllPlaylists with allPlaylistsId
+    app.put('/admin/allPlaylists/:allPlaylistsId', special.updateAllPlaylists);
+
+    // Delete a AllPlaylists with allPlaylistsId
+    app.delete('/admin/allPlaylists/:allPlaylistsId', special.deleteAllPlaylists);
 }
