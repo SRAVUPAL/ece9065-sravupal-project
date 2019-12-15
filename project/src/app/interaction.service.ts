@@ -5,12 +5,18 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class InteractionService {
-  
-  private _soingIdSourse = new Subject<Number>();
-  songId$ = this._soingIdSourse.asObservable();
+
+  private songIdSourse = new Subject<String>();
+  private tokenSourse = new Subject<String>();
+
+  songId$ = this.songIdSourse.asObservable();
+  token$ = this.tokenSourse.asObservable();
   constructor() { }
 
-  sendSongId(songId: Number){
-    this._soingIdSourse.next(songId);
+  sendSongId(songId: String) {
+    this.songIdSourse.next(songId);
+  }
+  sendToken(token: String) {
+    this.tokenSourse.next(token);
   }
 }

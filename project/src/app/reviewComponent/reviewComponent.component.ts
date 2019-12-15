@@ -7,6 +7,7 @@ import { NewReviewComponent } from '../newReview/newReview.component';
 import { EditSongComponent } from '../editSong/editSong.component';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { InteractionService } from '../interaction.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-reviewComponent',
@@ -24,6 +25,8 @@ export class ReviewComponent implements OnInit {
   id: any;
   songId: any;
   oneSong: Object;
+  userClass: any;
+  subscription: Subscription;
   @Input() songsPage: SongsPageComponent;
 
   constructor(private _http: HttpService,
@@ -31,7 +34,13 @@ export class ReviewComponent implements OnInit {
     private formBuilder: FormBuilder,
     private dialogRef: MatDialogRef<ReviewComponent>,
     private router: Router,
-    private _interactionService: InteractionService) { }
+    private _interactionService: InteractionService) {
+    this.subscription = _interactionService.token$.subscribe(
+      mission => {
+        this.userClass = mission;
+        console.log(mission);
+      });
+  }
 
   onButtonClick(): void {
     this.router.navigate(['/songsPage']);
@@ -55,9 +64,10 @@ export class ReviewComponent implements OnInit {
   }
 
   deleteSong(id) {
-    this._http.deleteSongPage(id);
-    alert("Song Deleted");
-    this.dialogRef.close();
+    // this._http.deleteSongPage(id);
+    // alert("Song Deleted");
+    // this.dialogRef.close();
+    console.log(this.userClass);
   }
 
   addReview() {
@@ -83,7 +93,7 @@ export class ReviewComponent implements OnInit {
     // let dialogRef: MatDialogRef<EditSongComponent>;
 
     this.dialog.open(EditSongComponent, dialogConfig);
-    // dialogRef.componentInstance.id = id;
+    // dialogRef.componentInstance.oneSongId = id;
     // console.log(dialogRef.componentInstance.id)
     // const navigationExtras: NavigationExtras = {
     //   state: {

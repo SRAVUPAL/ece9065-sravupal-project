@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpService } from '../http.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { HttpParams } from "@angular/common/http";
+import { Subscription }   from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog, MatDialogConfig, MatDialogRef, MatDialogModule } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -24,6 +24,7 @@ export class EditSongComponent implements OnInit {
   oneSong: any;
   @Input() reviewComponent: ReviewComponent;
   test: any;
+  subscription: Subscription;
 
   constructor(private _http: HttpService,
     private dialogRef: MatDialogRef<EditSongComponent>,
@@ -32,6 +33,10 @@ export class EditSongComponent implements OnInit {
     private router: Router,
     private _interactionService: InteractionService) {
     this.defaultForm();
+    this.subscription = _interactionService.songId$.subscribe(
+      mission => {
+        this.oneSongId = mission;
+    });
     // const navigation = this.router.getCurrentNavigation();
     // const state = navigation.extras.state as {
     //   transId: string,
@@ -46,15 +51,15 @@ export class EditSongComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.oneSongId = this.id;
+    console.log(this.subscription);
+    console.log(this.oneSongId);
+    // let dialogRef: MatDialogRef<ReviewComponent>;
+    // this.oneSongId = dialogRef.componentInstance.id;
     // this.state$ =  this.router.events.pipe(
     // filter(e => e instanceof ReviewComponent),
     // map(() => this.router.getCurrentNavigation().extras.state)
     // )
-    this._interactionService.songId$.subscribe(
-      data => { console.log(data) }
-    )
-    // console.log(songId);
+    console.log(this.oneSongId);
   }
 
   defaultForm() {

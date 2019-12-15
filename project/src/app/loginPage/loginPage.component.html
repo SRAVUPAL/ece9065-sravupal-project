@@ -64,9 +64,12 @@
 
                 <!-- When Uses is Logged In using Email or Google Account -->
                 <div class="container" *ngIf="userDetails">
+
                     <button mat-raised-button><a href="#" routerLink="/songsPage">Songs</a>
                     </button>
-                    <button mat-raised-button><a href="#" routerLink="/playlist">Playlists</a>
+
+                    <button *ngIf="userClass=='admin'">
+                        
                     </button>
                 </div>
                 <div class="container">

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthenticationService } from '../service/authentication.service';
-import{ AppComponent } from '../app.component'
+import { AppComponent } from '../app.component';
+import { InteractionService } from '../interaction.service'
 
 
 @Component({
@@ -22,15 +23,14 @@ export class LoginPageComponent {
   isForgotPassword: boolean;
   userDetails: any;
   allUsers: Object;
-  userClass: any;
+  userClass = "user";
 
   constructor(
     private authService: AuthenticationService,
-    private _http: HttpService
-  ) {
+    private _http: HttpService,
+    private _interactionService: InteractionService) {
     this.selectedVal = 'login';
     this.isForgotPassword = false;
-
   }
 
   // Comman Method to Show Message and Hide after 2 seconds
@@ -74,6 +74,7 @@ export class LoginPageComponent {
         this.showMessage("success", "Successfully Logged In!");
         this.isUserLoggedIn();
         this.checkUser();
+        this.hidePage();
       }, err => {
         this.showMessage("danger", err.message);
       });
@@ -127,18 +128,21 @@ export class LoginPageComponent {
   checkUser() {
     this._http.getUsers().subscribe((data: any[]) => {
       this.allUsers = data;
-      let i;
+      let t, e;
       for (let user of Object.keys(this.allUsers)) {
-        i = this.allUsers[user].token;
+        t = this.allUsers[user].token;
+        e = this.allUsers[user].userid;
+        if (t == "admin") {
+          this.userClass = t;
+        }
       }
-      if (i) {
-        this.userClass = i;
-      }
+      // console.log(this.userClass);
+      this._interactionService.sendToken(this.emailInput);
     });
   }
   hidePage() {
-    if(this.userClass == "admin"){
-      console.log(this.userClass)
+    if (this.userClass == "admin" || this.userClass == "user") {
+      console.log(this.userClass);
     };
   }
 }
