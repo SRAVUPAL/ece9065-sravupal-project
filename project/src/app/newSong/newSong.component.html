@@ -18,7 +18,7 @@
     <div *ngIf="form.controls['rating'].invalid && (form.controls['rating'].dirty || form.controls['rating'].touched)"
         class="alert alert-danger">
         <div *ngIf="form.controls['rating'].errors.required">
-            Review is required.
+            Rating is required.
         </div>
     </div>
     <div class="form-group">
@@ -28,7 +28,7 @@
     <div *ngIf="form.controls['artist'].invalid && (form.controls['artist'].dirty || form.controls['artist'].touched)"
         class="alert alert-danger">
         <div *ngIf="form.controls['artist'].errors.required">
-            Review is required.
+            Artist is required.
         </div>
     </div>
     <div class="form-group">
@@ -38,7 +38,7 @@
     <div *ngIf="form.controls['album'].invalid && (form.controls['album'].dirty || form.controls['album'].touched)"
         class="alert alert-danger">
         <div *ngIf="form.controls['album'].errors.required">
-            Review is required.
+            Album is required.
         </div>
     </div>
     <div class="form-group">
@@ -48,7 +48,7 @@
     <div *ngIf="form.controls['length'].invalid && (form.controls['length'].dirty || form.controls['length'].touched)"
         class="alert alert-danger">
         <div *ngIf="form.controls['length'].errors.required">
-            Review is required.
+            Length is required.
         </div>
     </div>
     <div class="form-group">
@@ -58,7 +58,7 @@
     <div *ngIf="form.controls['year'].invalid && (form.controls['year'].dirty || form.controls['year'].touched)"
         class="alert alert-danger">
         <div *ngIf="form.controls['year'].errors.required">
-            Review is required.
+            Year is required.
         </div>
     </div>
     <div class="form-group">
@@ -68,7 +68,7 @@
     <div *ngIf="form.controls['genre'].invalid && (form.controls['genre'].dirty || form.controls['genre'].touched)"
         class="alert alert-danger">
         <div *ngIf="form.controls['genre'].errors.required">
-            Review is required.
+            Genre is required.
         </div>
     </div>
     <div class="form-group">
@@ -78,7 +78,7 @@
     <div *ngIf="form.controls['comment'].invalid && (form.controls['comment'].dirty || form.controls['comment'].touched)"
         class="alert alert-danger">
         <div *ngIf="form.controls['comment'].errors.required">
-            Review is required.
+            Comment is required.
         </div>
     </div>
     <div class="form-group">
@@ -88,7 +88,7 @@
     <div *ngIf="form.controls['hidden'].invalid && (form.controls['hidden'].dirty || form.controls['hidden'].touched)"
         class="alert alert-danger">
         <div *ngIf="form.controls['hidden'].errors.required">
-            Review is required.
+            Hidden is required.
         </div>
     </div>
     <div class="form-group">
@@ -98,7 +98,7 @@
     <div *ngIf="form.controls['thumbnail'].invalid && (form.controls['thumbnail'].dirty || form.controls['thumbnail'].touched)"
         class="alert alert-danger">
         <div *ngIf="form.controls['thumbnail'].errors.required">
-            Review is required.
+            Thumbnail is required.
         </div>
     </div>
 </mat-dialog-content>
@@ -107,4 +107,6 @@
     <button class="mat-raised-button" (click)="close()">Close</button>
     <button class="mat-raised-button mat-primary"
         (click)="addSongForm(title.value, rating.value, artist.value, album.value, length.value, year.value, genre.value, comment.value, hidden.value, thumbnail.value)">Add</button>
+    <button class="mat-raised-button mat-primary"
+        (click)="addReviewForm(songReviwer.value, songName.value, songReview.value, songRating.value)">Add Review</button>
 </mat-dialog-actions>

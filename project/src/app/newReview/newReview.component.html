@@ -1,0 +1,50 @@
+<h2 mat-dialog-title>Add a new Review</h2>
+
+<mat-dialog-content [formGroup]="form" novalidate>
+    <div class="form-group">
+        <a>Song Reviewer</a>
+        <input type="text" class="form-control11" formControlName="songReviwer" #songReviwer />
+    </div>
+    <div *ngIf="form.controls['songReviwer'].invalid && (form.controls['songReviwer'].dirty || form.controls['songReviwer'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="form.controls['songReviwer'].errors.required">
+            Give Some name
+        </div>
+    </div>
+    <div class="form-group">
+        <a>Song Name</a>
+        <input type="text" class="form-control12" formControlName="songName" #songName />
+    </div>
+    <div *ngIf="form.controls['songName'].invalid && (form.controls['songName'].dirty || form.controls['songName'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="form.controls['songName'].errors.required">
+            Song Name is required.
+        </div>
+    </div>
+    <div class="form-group">
+        <a>Review</a>
+        <input type="text" class="form-control12" formControlName="songReview" #songReview />
+    </div>
+    <div *ngIf="form.controls['songReview'].invalid && (form.controls['songReview'].dirty || form.controls['songReview'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="form.controls['songReview'].errors.required">
+            Review is required.
+        </div>
+    </div>
+    <div class="form-group">
+        <a>Rating</a>
+        <input type="text" class="form-control12" formControlName="songRating" #songRating />
+    </div>
+    <div *ngIf="form.controls['songRating'].invalid && (form.controls['songRating'].dirty || form.controls['songRating'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="form.controls['songRating'].errors.required">
+            Review is required.
+        </div>
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button class="mat-raised-button" (click)="close()">Close</button>
+    <button class="mat-raised-button mat-primary"
+        (click)="addReviewForm(songReviwer.value, songName.value, songReview.value, songRating.value)">Add</button>
+</mat-dialog-actions>

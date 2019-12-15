@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpService } from '../http.service';
+import { ViewAllDataComponent } from '../viewAllData/viewAllData.component';
+import { MatDialog, MatDialogConfig, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-home',
@@ -7,25 +10,39 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  clickCounter: number = 0;
-  name: string = '';
-  age: string = '';
+  dataset: any;
+  allSongs: Object;
+  allReviews: Object;
+  userClass: any;
 
-  constructor() { }
+  constructor(private _http: HttpService,
+    private dialog: MatDialog) { }
 
   ngOnInit() {
+
+    this._http.getSongsPage().subscribe((data: any[]) => {
+      this.allSongs = data.sort(function (i, j) {
+        return j.rating - i.rating;
+        this.dataset = this.allSongs;
+      })
+    });
+    this._http.getReviewsPage().subscribe((data: any[]) => {
+      this.allReviews = data.sort(function (i, j) {
+        return j.rating - i.rating;
+      })
+    });
   }
 
-  setClasses() {
-    let myClasses = {
-      active: this.clickCounter > 4,
-      notactive: this.clickCounter <= 4
-    };
-    return myClasses;
-  }
+  expand(id) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "auto";
+    dialogConfig.height = "auto";
+    let dialogRef: MatDialogRef<ViewAllDataComponent>;
 
-  countClick() {
-    this.clickCounter++;
+    dialogRef = this.dialog.open(ViewAllDataComponent, dialogConfig);
+    dialogRef.componentInstance.id = id;
   }
 
 }

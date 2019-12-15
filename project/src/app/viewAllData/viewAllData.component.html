@@ -11,11 +11,6 @@
         <p class="song_data"><a>Year:</a> {{ allSongs.year }}</p>
         <p class="song_data"><a>Genre:</a> {{ allSongs.genre }}</p>
         <p class="song_data"><a>Comment:</a> {{ allSongs.comment }}</p>
-        <span class="mat-raised-button mat-primary" (click)="deleteSong(allSongs._id)">Delete Song</span>
-        <br>
-        <span class="mat-raised-button mat-primary" (click)="editSong(allSongs._id)">Edit Song</span>
-        <br>
-        <span class="mat-raised-button mat-primary" (click)="addReview(allSongs._id)">Add Review</span>
     </div>
     <h1>Reviews</h1><br>
     <button mat-icon-button (click)="onClose()">X</button>
@@ -27,8 +22,6 @@
                 <p class="review_data"><a>Song name: </a> {{ review.title }}</p>
                 <p class="review_data"><a>Review: </a>{{ review.review }}</p>
                 <p class="review_data"><a>Overall Rating: </a>{{ review.rating }}</p>
-                <br>
-                <p class="review_data">{{ review.createdAt }}</p>
             </div>
             <ng-template #notShow>
                 <p>

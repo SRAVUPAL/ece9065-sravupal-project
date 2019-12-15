@@ -1,25 +1,188 @@
-button {
-    font-weight: bold;
-    background: lightgray;
-    padding: .3em .8em;
-    cursor: pointer;
-}
-.homePage {
-    padding: 3em;
-    border: 1px solid lightgray;
-    margin-bottom: 1em;
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap');
 
+body {
+  background: linear-gradient(45deg,  rgba(232, 233, 208, 0.8) 100%,rgb(216, 224, 187) 100%);
+  color: gray;
+  font-family: 'Nunito', 'sans-serif';
+  font-size: base-font-size;
+  line-height: base-line-height;
+  width: auto;
+  height: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.searchResults {
+  list-style-type: none;
+  margin: auto;
+  padding: 5px;
+  display: flex;
+  flex-wrap: wrap;
+
+  div {
+    background: rgb(204, 202, 202);
+    padding: 1em;
+    margin-right: 10px;
+    width: 100%;
+    height: auto;
+    margin-bottom: 1em;
+    display: flexbox;
+    flex-direction: column;
+  }
+}
+
+div {
+  list-style-type: none;
+  margin: auto;
+  padding: 5px;
+  display: flex;
+  flex-wrap: wrap;
+
+  div {
+      background: rgb(204, 202, 202);
+      padding: 1em;
+      margin-right: 10px;
+      width: 1000%;
+      height: auto;
+      margin-bottom: 1em;
+      display: flex;
+      flex-direction: column;}}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+  background: rgba(black, 0.8);
+  width: 100%;
+  height: 100%;
+}
+
+.form {
+  z-index: 15;
+  position: relative;
+  background: white;
+  width: max-width;
+  border-radius: 4px;
+  box-shadow: 0 0 30px rgba(black, .1);
+  box-sizing: border-box;
+  margin: 100px auto 10px;
+  overflow: hidden;
+}
     input {
-        padding: 1em;
-        margin-bottom: 2em;
+      outline: none;
+      display: block;
+      background: rgba(black, 0.1);
+      width: 100%;
+      border: 0;
+      border-radius: 4px;
+      box-sizing: border-box;
+      padding: 12px 20px;
+      color: gray;
+      font-family: inherit;
+      font-size: inherit;
+      font-weight: semibold;
+      line-height: inherit;
+      transition: 0.3s ease;
+}
+
+button {
+  border: 2px solid black;
+  background-color: #dfe0d1;
+  background-repeat: no-repeat;
+  background-size: 200px 100%;
+  color: rgb(12, 2, 2);
+  box-shadow:0 1px 2px #5e5d5b;
+  text-align: end;
+  line-height: 65px;
+  // line-height: 65px;
+}
+      input[type='checkbox'] {
+        display: inline-block;
+        width: auto;
+        margin: 0 10px 0 0;
+      }
+
+    h1 {
+      padding: 4px 0;
+      color: accent;
+      font-size: 24px;
+      font-weight: bold;
+      text-transform: uppercase;
+
+    }
+
+  a {
+    color: rgb(20, 19, 19);
+    font-size: 16px;
+    text-decoration: none;
+    text-shadow: 1px 2px 0 rgba(black, .1);
+
+}
+
+$primary: rgb(133, 118, 42);
+
+// body {
+//     margin: 0;
+//     font-family: 'Nunito', 'sans-serif';
+//     font-size: 18px;
+// }
+
+.container {
+    width: 100%;
+    margin: 0 0;
+}
+
+header {
+    background: $primary;
+    padding: 1em 0;
+    width: auto;
+
+    a {
+        color: white;
+        text-decoration: none;
+    }
+    a.logo {
+        font-weight: bold;
+    }
+
+    nav {
+        float: right;
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            display: flex;
+
+            li a {
+                padding: 1em;
+
+                &:hover {
+                    background: darken($primary, 10%);
+                }
+            }
+        }
     }
 }
-
-.active {
-    background-color: yellow;
-    border: 4px solid black;
-}
-
-.notactive {
-    background-color: lightgray;
-}
+sub{
+  background: rgb(190, 188, 188);
+      // padding: 1em;
+      margin-left: 10px;
+      width: 100%;
+      height: auto;
+      margin-bottom: 1em;
+      display: flex;
+      flex-direction: column-reverse;
+      div {
+          background: rgb(201, 222, 228);
+          // padding: 1em;
+          margin-left: 50px;
+          text-align: left;
+          font-size: 18;
+          width: 100%;
+          height: auto;
+          margin-bottom: 1em;
+          display: flex;
+          flex-direction: column;
+      }
+  }

@@ -7,8 +7,11 @@ import { HomeComponent } from './home/home.component';
 import { SongsPageComponent } from './songsPage/songsPage.component';
 import { ReviewComponent } from './reviewComponent/reviewComponent.component';
 import { LoginPageComponent } from './loginPage/loginPage.component';
+import { NewReviewComponent } from './newReview/newReview.component';
 import { NewSongComponent } from './newSong/newSong.component';
+import { EditSongComponent } from './editSong/editSong.component';
 import { PlaylistComponent } from './playlistComponent/playlistComponent.component';
+import { ViewAllDataComponent } from './viewAllData/viewAllData.component';
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -21,6 +24,7 @@ import {
   MatFormField
 } from '@angular/material';
 import { Routes, RouterModule } from '@angular/router';
+import { FilterPipe } from './filter.pipe';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -28,7 +32,10 @@ const appRoutes: Routes = [
   { path: 'reviewComponent', component: ReviewComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'addSong', component: NewSongComponent },
-  { path: 'playlist', component: PlaylistComponent }
+  { path: 'editSong', component: EditSongComponent },
+  { path: 'addReview', component: NewReviewComponent },
+  { path: 'playlist', component: PlaylistComponent },
+  { path: 'viewAllData', component: ViewAllDataComponent }
 ]
 
 var config = {
@@ -48,7 +55,11 @@ var config = {
     LoginPageComponent,
     ReviewComponent,
     NewSongComponent,
-    PlaylistComponent
+    EditSongComponent,
+    PlaylistComponent,
+    ViewAllDataComponent,
+    FilterPipe,
+    NewReviewComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -66,8 +77,8 @@ var config = {
     MatDialogModule,
     ReactiveFormsModule
   ],
-  providers: [LoginPageComponent,AppComponent],
+  providers: [LoginPageComponent, AppComponent],
   bootstrap: [AppComponent],
-  entryComponents: [ReviewComponent, NewSongComponent]
+  entryComponents: [ReviewComponent, NewSongComponent, EditSongComponent, ViewAllDataComponent, NewReviewComponent]
 })
 export class AppModule { }

@@ -1,8 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpService } from '../http.service';
-import { MatDialogRef, MatDialogModule } from '@angular/material';
+import { MatDialog, MatDialogConfig, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SongsPageComponent } from '../songsPage/songsPage.component';
+import { NewReviewComponent } from '../newReview/newReview.component';
+import { EditSongComponent } from '../editSong/editSong.component';
 
 @Component({
   selector: 'app-reviewComponent',
@@ -18,6 +20,7 @@ export class ReviewComponent implements OnInit {
   @Input() songsPage: SongsPageComponent;
 
   constructor(private _http: HttpService,
+    private dialog: MatDialog,
     private dialogRef: MatDialogRef<ReviewComponent>,
     private router: Router) { }
 
@@ -27,12 +30,8 @@ export class ReviewComponent implements OnInit {
 
   ngOnInit() {
     let songId = this.id;
-    let songTitle = "";
     this._http.getOneSongPage(songId).subscribe(data => {
       this.allSongs = data;
-      // songTitle = this.allSongs[].title;
-      console.log(songTitle);
-      console.log(songId);
     });
     this._http.getReviewsPage().subscribe(data => {
       // for (let i = 0; i < this.allReviews[i].length(); i++) {
@@ -52,4 +51,28 @@ export class ReviewComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  addReview() {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "200%";
+    dialogConfig.height = "200%";
+
+    this.dialog.open(NewReviewComponent, dialogConfig);
+  }
+
+  editSong(id) {
+    const dialogConfig = new MatDialogConfig();
+    console.log(id);
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "200%";
+    dialogConfig.height = "200%";
+    let dialogRef: MatDialogRef<EditSongComponent>;
+
+    this.dialog.open(EditSongComponent, dialogConfig);
+    dialogRef.componentInstance.id = id;
+    console.log(dialogRef.componentInstance.id)
+  }
 }

@@ -47,14 +47,14 @@ export class HttpService {
   postReviewsPage(songReviwer: String,
     songName: String,
     songReview: String,
-    songRating: Number) {
+    songRating: String) {
     const obj = {
       reviwer: songReviwer,
       title: songName,
       review: songReview,
       rating: songRating
     };
-    this.http.post('http://localhost:3000/admin/songs/', obj).subscribe(res => console.log('Review Added'));
+    this.http.post('http://localhost:3000/admin/reviews/', obj).subscribe(res => console.log('Review Added'));
   }
 
   getReviewsPage() {
@@ -71,6 +71,31 @@ export class HttpService {
 
   getAllPlaylistss() {
     return this.http.get('http://localhost:3000/admin/allPlaylists')
+  }
+
+  editSongPage(id, songTitle: String,
+    songRating: Number,
+    songArtist: String,
+    songAlbum: String,
+    songLength: Number,
+    songYear: Number,
+    songGenre: String,
+    songComment: String,
+    songHidden: Boolean,
+    songThumbnail: String) {    
+    const obj = {
+      title: songTitle,
+      rating: songRating,
+      artist: songArtist,
+      album: songAlbum,
+      length: songLength,
+      year: songYear,
+      genre: songGenre,
+      comment: songComment,
+      Hidden: songHidden,
+      thumbnail: songThumbnail
+    };
+    return this.http.put('http://localhost:3000/admin/songs/' + id, obj).subscribe(res => console.log('Song Modified'));
   }
 }
 

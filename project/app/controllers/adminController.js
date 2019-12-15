@@ -1,5 +1,6 @@
 const SongData = require('../schema/songs.js');
 const ReviewData = require('../schema/reviews.js');
+const reviews= require('../schema/reviews.js');
 const RatingData = require('../schema/ratings.js');
 const AccessData = require('../schema/access.js');
 const PlaylistData = require('../schema/playlist.js');
@@ -144,20 +145,20 @@ exports.deleteSong = (req, res, next) => {
 // Create and Save a new ReviewData
 exports.createReview = (req, res, next) => {
     // Validate request
-    if (!req.body.content) {
+    if (!req.body) {
         return res.status(400).send({
             message: "ReviewData content can not be empty"
         });
     }
-
+    console.log(req.body);
     // Create new ReviewData
-    const reviewReq = new ReviewData({
-        reviwer: String,
-        title: String,
-        review: String,
-        rating: Number
+    const reviewReq = new reviews({
+        reviwer: req.body.reviwer,
+        title: req.body.title,
+        review: req.body.review,
+        rating: req.body.rating
     });
-
+    console.log(reviewReq)
     // Save ReviewData in the database
     reviewReq.save()
         .then(data => {
@@ -214,10 +215,10 @@ exports.updateReview = (req, res, next) => {
 
     // Find review and update it with the request body
     ReviewData.findByIdAndUpdate(req.params.reviewId, {
-        reviwer: String,
-        title: String,
-        review: String,
-        rating: Number
+        reviwer: req.body.reviwer,
+        title: req.body.title,
+        review: req.body.review,
+        rating: req.body.rating
     }, { new: true })
         .then(reviewReq => {
             if (!reviewReq) {

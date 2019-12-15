@@ -1,0 +1,60 @@
+<h2 mat-dialog-title>Add a new song</h2>
+
+<mat-dialog-content [formGroup]="form" novalidate>
+    <div *ngIf="oneSong" class="form-group">
+        <a>Title</a>
+        <div *ngFor = "let song of oneSong">{{song.title}}</div>
+    </div>
+    
+    <div class="form-group">
+        <a>Rating</a>
+        <input type="text" class="form-control12" formControlName="rating" #rating />
+    </div>
+    
+    <div class="form-group">
+        <a>Artist</a>
+        <input type="text" class="form-control12" formControlName="artist" #artist />
+    </div>
+    
+    <div class="form-group">
+        <a>Album</a>
+        <input type="text" class="form-control12" formControlName="album" #album />
+    </div>
+    
+    <div class="form-group">
+        <a>Length</a>
+        <input type="text" class="form-control12" formControlName="length" #length />
+    </div>
+    
+    <div class="form-group">
+        <a>Year</a>
+        <input type="text" class="form-control12" formControlName="year" #year />
+    </div>
+    
+    <div class="form-group">
+        <a>Genre</a>
+        <input type="text" class="form-control12" formControlName="genre" #genre />
+    </div>
+    
+    <div class="form-group">
+        <a>Comment</a>
+        <input type="text" class="form-control12" formControlName="comment" #comment />
+    </div>
+    
+    <div class="form-group">
+        <a>Hidden</a>
+        <input type="text" class="form-control12" formControlName="hidden" #hidden />
+    </div>
+    
+    <div class="form-group">
+        <a>Thumbnail</a>
+        <input type="text" class="form-control12" formControlName="thumbnail" #thumbnail />
+    </div>
+    
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button class="mat-raised-button" (click)="close()">Close</button>
+    <button class="mat-raised-button mat-primary"
+        (click)="editSongForm(title.value, rating.value, artist.value, album.value, length.value, year.value, genre.value, comment.value, hidden.value, thumbnail.value)">Add</button>
+</mat-dialog-actions>

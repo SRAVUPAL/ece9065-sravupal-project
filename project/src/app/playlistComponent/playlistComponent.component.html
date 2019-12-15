@@ -11,7 +11,7 @@
     </mat-expansion-panel-header>
     <button mat-raised-button (click)="addNewSong()">Add Song</button>
 </mat-expansion-panel> -->
-
+<button mat-icon-button (click)="onClose()">X</button>
 <div *ngIf="playlists">
     <div class="songList" id="song" *ngFor="let playlist of playlists, index as i">
         <div *ngIf="i==0">
@@ -20,13 +20,12 @@
                 <div *ngFor="let playlist of playlists, index as i"></div>
                 <h3>{{ playlist.name }} description</h3>
             </button>
-            <div mat-dialog-content (click)="expand(playlist._id)" *ngIf="playlist._id">
-
-                <p class="songle_title"><strong>Song title: </strong>{{ playlist.title }}</p>
-                <br>
-                <p class="song_data"><strong>Album: </strong>{{ playlist.album }}</p>
-            </div>
         </div>
+
+        <p class="songle_title"><strong>Song title: </strong>{{ playlist.title }}</p>
+        <br>
+        <p class="song_data"><strong>Album: </strong>{{ playlist.album }}</p>
+
+
     </div>
-    <button mat-icon-button (click)="onClose()">X</button>
 </div>

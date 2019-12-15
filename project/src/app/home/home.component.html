@@ -1,0 +1,31 @@
+<div class="md-form">
+  <input type="search" [(ngModel)]="searchText" placeholder="Search text">
+</div>
+<h1>Welcome to Song Reviewer site</h1>
+<h2>Here are the List of all Songs</h2>
+<div class="searchResults" (click)="expand(song._id)" *ngFor="let song of allSongs | filter: searchText">
+  <div *ngIf="allSongs">
+    
+    <button mat-raised-button [style.background-image]="'url(' + song.thumbnail + ')'">
+      <p class="songle_title">{{ song.title }}</p>
+      <br>
+      <p class="song_data"><strong>Overall Rating: </strong>{{ song.rating }}</p>
+    </button>
+  
+  </div>
+</div>
+
+<body>
+
+  <h2>Here are the List of all Reviews for above Songs</h2>
+  <sub class="reviewContent" *ngIf="allReviews">
+    <div class="reviewList" *ngFor="let review of allReviews">
+      <a class="review_data"><a>Reviewd by: </a> {{ review.reviwer }}</a>
+      <br>
+      <p class="review_data"><a>Song name: </a> {{ review.title }}</p>
+      <p class="review_data"><a>Review: </a>{{ review.review }}</p>
+      <p class="review_data"><a>Rating: </a>{{ review.rating }}</p>
+      <p class="review_data">{{ review.createdAt }}</p>
+    </div>
+  </sub>
+</body>

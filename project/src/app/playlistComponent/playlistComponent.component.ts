@@ -19,6 +19,7 @@ export class PlaylistComponent implements OnInit {
 
   constructor(private _http: HttpService,
     private dialog: MatDialog,
+    private dialogRef: MatDialogRef<PlaylistComponent>,
     private router: Router) { }
 
   onButtonClick(): void {
@@ -58,6 +59,6 @@ export class PlaylistComponent implements OnInit {
     this.dialog.open(NewSongComponent, dialogConfig);
   }
   onClose() {
-    // this.dialogRef.close();
+    this.dialogRef.close();
   }
 }
