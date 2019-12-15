@@ -1,5 +1,8 @@
 <h1>All Time Best Songs</h1>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<div class="md-form">
+    <input type="search" [(ngModel)]="searchText" placeholder="Search text">
+</div>
 <mat-expansion-panel>
     <mat-expansion-panel-header>
         <mat-panel-title>
@@ -13,7 +16,7 @@
     <button mat-raised-button (click)="viewPlaylist()">Playlist</button>
 </mat-expansion-panel>
 <div *ngIf="allSongs">
-    <div class="songList" id="song" *ngFor="let song of allSongs">
+    <div class="songList" id="song" *ngFor="let song of allSongs | filter: searchText">
         <button mat-raised-button (click)="expand(song._id)" [style.background-image]="'url(' + song.thumbnail + ')'">
             <p class="songle_title">{{ song.title }}</p>
             <br>
