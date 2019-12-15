@@ -1,3 +1,40 @@
+.searchResults {
+    list-style-type: none;
+    margin: auto;
+    padding: 5px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.md-form {
+    width: 200%;
+}
+input {
+    outline: none;
+    display: block;
+    background: rgba(black, 0.1);
+    width: 100%;
+    border: 0;
+    border-radius: 4px;
+    box-sizing: border-box;
+    padding: 12px 20px;
+    color: gray;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: semibold;
+    line-height: inherit;
+    transition: 0.3s ease;
+}
+.form {
+    z-index: 15;
+    position: relative;
+    background: white;
+    width: max-width;
+    border-radius: 4px;
+    box-shadow: 0 0 30px rgba(black, .1);
+    box-sizing: border-box;
+    margin: 100px auto 10px;
+    overflow: hidden;
+}
 div {
     list-style-type: none;
     margin: 0;

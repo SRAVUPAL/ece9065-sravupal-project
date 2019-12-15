@@ -133,11 +133,15 @@ export class LoginPageComponent {
       let t, e;
       for (let user of Object.keys(this.allUsers)) {
         if (this.emailInput == this.allUsers[user].userid) {
-          t = this.allUsers[user].token; 
+          t = this.allUsers[user].token;
           console.log(t);
         }
       }
-      if (t == "user") {
+      if (t == "admin") {
+        console.log(t + "navigation success");
+        this.router.navigate(['songsPage']);
+      }
+      else if (t == "user") {
         console.log(t + "navigation success");
         this.router.navigate(['userSongComponent']);
       }

@@ -54,7 +54,7 @@ export class HttpService {
       review: songReview,
       rating: songRating
     };
-    this.http.post('http://localhost:3000//admin/reviews/createReview', obj).subscribe(res => console.log('Review Added'));
+    this.http.post('http://localhost:3000/admin/reviews/createReview', obj).subscribe(res => console.log('Review Added'));
   }
 
   getReviewsPage() {

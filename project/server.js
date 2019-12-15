@@ -31,7 +31,7 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 // Connecting to the database
-mongoose.connect(dbConfig.url, {
+mongoose.connect(dbConfig.dbUrl, {
     useNewUrlParser: true
 }).then(() => {
     console.log("DB connection success");
@@ -50,7 +50,7 @@ require('./app/routes/guest.js')(app);
 require('./app/routes/user.js')(app);
 
 // listen for requests
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || dbConfig.portNum;
 app.listen(PORT, () => {
     console.log(`listening on ${PORT}`);
 });

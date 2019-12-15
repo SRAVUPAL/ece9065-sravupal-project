@@ -2,16 +2,20 @@
   <input type="search" [(ngModel)]="searchText" placeholder="Search text">
 </div>
 <h1>Welcome to Song Reviewer site</h1>
+<strong>About:</strong><br>
+<a>Here you can add songs</a><br>
+<a>Give reviews to the favourite songs</a><br>
+<a>Add songs to playlist</a><br>
 <h2>Here are the List of all Songs</h2>
 <div class="searchResults" (click)="expand(song._id)" *ngFor="let song of allSongs | filter: searchText">
   <div *ngIf="allSongs">
-    
+
     <button mat-raised-button [style.background-image]="'url(' + song.thumbnail + ')'">
       <p class="songle_title">{{ song.title }}</p>
       <br>
       <p class="song_data"><strong>Overall Rating: </strong>{{ song.rating }}</p>
     </button>
-  
+
   </div>
 </div>
 
