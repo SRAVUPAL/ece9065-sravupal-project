@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HttpParams } from "@angular/common/http";
-import { MatDialogRef, MatDialogModule } from '@angular/material';
+import { MatDialogRef, MatDialog, MatDialogModule } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import{ MatDialogConfig } from '@angular/material/dialog';
+import{ NewReviewComponent } from '../newReview/newReview.component';
 
 @Component({
   selector: 'app-newSong',
@@ -18,6 +20,7 @@ export class NewSongComponent implements OnInit {
   constructor(private _http: HttpService,
     private dialogRef: MatDialogRef<NewSongComponent>,
     private http: HttpClient,
+    private dialog: MatDialog,
     private formBuilder: FormBuilder) { this.defaultForm(); }
 
   ngOnInit() { }
@@ -42,6 +45,18 @@ export class NewSongComponent implements OnInit {
     alert("Song Added");
     this.dialogRef.close();
   }
+
+  addReviewForm() {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "200%";
+    dialogConfig.height = "200%";
+
+    this.dialog.open(NewReviewComponent, dialogConfig);
+  }
+
   close() {
     this.dialogRef.close();
   }
