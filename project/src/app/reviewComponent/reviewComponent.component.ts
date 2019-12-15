@@ -117,10 +117,16 @@ export class ReviewComponent implements OnInit {
     });
   }
 
-  editSongForm(songTitle: String, songRating: Number, songArtist: String, songAlbum: String, songLength: Number, songYear: Number, songGenre: String, songComment: String, songHidden: Boolean, songThumbnail: String) {
-    this._http.editSongPage(this.songId, songTitle, songRating, songArtist, songAlbum, songLength, songYear, songGenre, songComment, songHidden, songThumbnail)
+  editSongForm(id, songTitle: String, songRating: Number, songArtist: String, songAlbum: String, songLength: Number, songYear: Number, songGenre: String, songComment: String, songHidden: Boolean, songThumbnail: String) {
+    this._http.editSongPage(id, songTitle, songRating, songArtist, songAlbum, songLength, songYear, songGenre, songComment, songHidden, songThumbnail)
     console.log(this.songId)
     alert("Song Added");
     this.dialogRef.close();
+  }
+
+  addToPlaylist(id, playlistName: String,
+    songTitle: string,
+    songAlbum: String) {
+    this._http.addToPlaylist(id, playlistName, songTitle, songAlbum);
   }
 }
