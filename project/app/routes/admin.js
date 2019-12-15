@@ -2,29 +2,29 @@ module.exports = (app) => {
     const special = require('../controllers/adminController.js');
 
     // Create a new Song
-    app.post('/admin/songs', special.createSong);
+    app.post('/admin/songs/createSong', special.createSong);
 
     // Retrieve all Songs
-    app.get('/admin/songs', special.findAllSongs);
+    app.get('/admin/songs/getsong', special.findAllSongs);
 
     // Retrieve a single Song with noteId
-    app.get('/admin/songs/:songId', special.findOneSong);
+    app.get('/admin/songs/getbyid/:songId', special.findOneSong);
 
     // Update a Song with songId
-    app.put('/admin/songs/:songId', special.updateSong);
+    app.put('/admin/songs/update/:songId', special.updateSong);
 
     // Delete a Song with songId
-    app.delete('/admin/songs/:songId', special.deleteSong);
+    app.delete('/admin/songs/remove/:songId', special.deleteSong);
 
     /*
     *Reviews
     */
 
     // Create a new Review
-    app.post('/admin/reviews', special.createReview);
+    app.post('/admin/reviews/createReview', special.createReview);
 
     // Retrieve all Reviews
-    app.get('/admin/reviews', special.findAllReviews);
+    app.get('/admin/reviews/getReviews', special.findAllReviews);
 
     // Retrieve a single Review with noteId
     app.get('/admin/reviews/:reviewId', special.findOneReview);
@@ -62,7 +62,7 @@ module.exports = (app) => {
     app.post('/admin/access', special.createAccess);
 
     // Retrieve all Access
-    app.get('/admin/access', special.findAllAccess);
+    app.get('/admin/access/getAccess', special.findAllAccess);
 
     // Retrieve a single Access with noteId
     app.get('/admin/access/:accessId', special.findOneAccess);
@@ -81,7 +81,7 @@ module.exports = (app) => {
     app.post('/admin/playlist', special.createPlaylist);
 
     // Retrieve all Playlist
-    app.get('/admin/playlist', special.findAllPlaylist);
+    app.get('/admin/playlist/getPlaylists', special.findAllPlaylist);
 
     // Retrieve a single Playlist with noteId
     app.get('/admin/playlist/:playlistId', special.findOnePlaylist);
@@ -97,10 +97,10 @@ module.exports = (app) => {
      */
 
     // Create a new Playlist
-    app.post('/admin/allPlaylists', special.createAllPlaylists);
+    app.post('/admin/allPlaylists/addtoAllPlaylists', special.createAllPlaylists);
 
     // Retrieve all AllPlaylists
-    app.get('/admin/allPlaylists', special.findAllAllPlaylists);
+    app.get('/admin/allPlaylists/getAllPlaylists', special.findAllAllPlaylists);
 
     // Retrieve a single AllPlaylists with noteId
     app.get('/admin/allPlaylists/:allPlaylistsId', special.findOneAllPlaylists);

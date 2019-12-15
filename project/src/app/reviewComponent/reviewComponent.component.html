@@ -11,14 +11,12 @@
         <p class="song_data"><a>Year:</a> {{ allSongs.year }}</p>
         <p class="song_data"><a>Genre:</a> {{ allSongs.genre }}</p>
         <p class="song_data"><a>Comment:</a> {{ allSongs.comment }}</p>
-        <div *ngIf="userClass=='admin'">
+        <div *ngIf="userClass==admin">
             <span class="mat-raised-button mat-primary" (click)="deleteSong(allSongs._id)">Delete Song</span>
             <br>
             <span class="mat-raised-button mat-primary" (click)="editSong(allSongs._id)">Edit Song</span>
             <br>
         </div>
-        <span class="mat-raised-button mat-primary"
-            (click)="addToPlaylist(allSongs._id, allSongs.title, allSongs.album)">Add to Playlist</span>
         <span class="mat-raised-button mat-primary" (click)="addReview(allSongs._id)">Add Review</span>
 
     </div>

@@ -10,6 +10,7 @@ import { LoginPageComponent } from './loginPage/loginPage.component';
 import { NewReviewComponent } from './newReview/newReview.component';
 import { NewSongComponent } from './newSong/newSong.component';
 import { EditSongComponent } from './editSong/editSong.component';
+import { UserSongPageComponent } from './userSongPage/userSongPage.component';
 import { PlaylistComponent } from './playlistComponent/playlistComponent.component';
 import { ViewAllDataComponent } from './viewAllData/viewAllData.component';
 import { AngularFireModule } from "@angular/fire";
@@ -35,7 +36,8 @@ const appRoutes: Routes = [
   { path: 'editSong', component: EditSongComponent },
   { path: 'addReview', component: NewReviewComponent },
   { path: 'playlist', component: PlaylistComponent },
-  { path: 'viewAllData', component: ViewAllDataComponent }
+  { path: 'viewAllData', component: ViewAllDataComponent },
+  { path: 'userSongComponent', component: UserSongPageComponent }
 ]
 
 var config = {
@@ -59,7 +61,8 @@ var config = {
     PlaylistComponent,
     ViewAllDataComponent,
     FilterPipe,
-    NewReviewComponent
+    NewReviewComponent,
+    UserSongPageComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -79,6 +82,6 @@ var config = {
   ],
   providers: [LoginPageComponent, AppComponent],
   bootstrap: [AppComponent],
-  entryComponents: [ReviewComponent, NewSongComponent, EditSongComponent, ViewAllDataComponent, NewReviewComponent]
+  entryComponents: [ReviewComponent, NewSongComponent, EditSongComponent, ViewAllDataComponent, NewReviewComponent, UserSongPageComponent]
 })
 export class AppModule { }

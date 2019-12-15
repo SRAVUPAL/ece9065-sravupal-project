@@ -8,11 +8,11 @@ export class HttpService {
 
   constructor(private http: HttpClient) { }
   getSongsPage() {
-    return this.http.get('http://localhost:3000/admin/songs')
+    return this.http.get('http://localhost:3000/admin/songs/getsong')
   }
 
   getOneSongPage(id) {
-    return this.http.get('http://localhost:3000/admin/songs/' + id)
+    return this.http.get('http://localhost:3000/admin/songs/getbyid/' + id)
   }
 
   postSongsPage(songTitle: String,
@@ -32,16 +32,16 @@ export class HttpService {
       album: songAlbum,
       length: songLength,
       year: songYear,
-      genre: songGenre,
+      genre: songGenre,   
       comment: songComment,
       Hidden: songHidden,
       thumbnail: songThumbnail
     };
-    this.http.post('http://localhost:3000/admin/songs/', obj).subscribe(res => console.log('Song Added'));
+    this.http.post('http://localhost:3000/admin/songs/createSong', obj).subscribe(res => console.log('Song Added'));
   }
 
   deleteSongPage(id) {
-    return this.http.delete('http://localhost:3000/admin/songs/' + id).subscribe(res => console.log('Song Deleted'));
+    return this.http.delete('http://localhost:3000/admin/songs/remove/' + id).subscribe(res => console.log('Song Deleted'));
   }
 
   postReviewsPage(songReviwer: String,
@@ -54,34 +54,34 @@ export class HttpService {
       review: songReview,
       rating: songRating
     };
-    this.http.post('http://localhost:3000/admin/reviews/', obj).subscribe(res => console.log('Review Added'));
+    this.http.post('http://localhost:3000//admin/reviews/createReview', obj).subscribe(res => console.log('Review Added'));
   }
 
   getReviewsPage() {
-    return this.http.get('http://localhost:3000/admin/reviews')
+    return this.http.get('http://localhost:3000/admin/reviews/getReviews')
   }
 
   getUsers() {
-    return this.http.get('http://localhost:3000/admin/access')
+    return this.http.get('http://localhost:3000/admin/access/getAccess')
   }
 
   getPlaylists() {
-    return this.http.get('http://localhost:3000/admin/playlist')
+    return this.http.get('http://localhost:3000/admin/playlist/getPlaylists')
   }
 
   getAllPlaylistss() {
-    return this.http.get('http://localhost:3000/admin/allPlaylists')
+    return this.http.get('http://localhost:3000/admin/allPlaylists/getAllPlaylists')
   }
 
-  addToPlaylist(id, playlistName: String,
+  addToPlaylist(playlistName: String,
     songTitle: string,
-    songAlbum: String, ) {
+    songAlbum: String ) {
     const obj = {
       name: playlistName,
       title: songTitle,      
       album: songAlbum
     }
-    return this.http.post('http://localhost:3000/admin/allPlaylists' + id, obj).subscribe(res => console.log('Song Added to playlist'));
+    return this.http.post('http://localhost:3000/admin/allPlaylists/addtoAllPlaylists', obj).subscribe(res => console.log('Song Added to playlist'));
   }
 
   editSongPage(id, songTitle: String,
@@ -106,7 +106,7 @@ export class HttpService {
       Hidden: songHidden,
       thumbnail: songThumbnail
     };
-    return this.http.put('http://localhost:3000/admin/songs/' + id, obj).subscribe(res => console.log('Song Modified'));
+    return this.http.put('http://localhost:3000/admin/songs/update/' + id, obj).subscribe(res => console.log('Song Modified'));
   }
 }
 

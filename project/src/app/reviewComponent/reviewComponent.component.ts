@@ -64,10 +64,11 @@ export class ReviewComponent implements OnInit {
   }
 
   deleteSong(id) {
-    // this._http.deleteSongPage(id);
-    // alert("Song Deleted");
-    // this.dialogRef.close();
-    console.log(this.userClass);
+    console.log(id);
+    this._http.deleteSongPage(id);
+    alert("Song Deleted");
+    this.dialogRef.close();
+    // console.log(this.userClass);
   }
 
   addReview() {
@@ -127,6 +128,6 @@ export class ReviewComponent implements OnInit {
   addToPlaylist(id, playlistName: String,
     songTitle: string,
     songAlbum: String) {
-    this._http.addToPlaylist(id, playlistName, songTitle, songAlbum);
+    this._http.addToPlaylist(playlistName, songTitle, songAlbum);
   }
 }

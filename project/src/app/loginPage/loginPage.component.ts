@@ -3,7 +3,8 @@ import { HttpService } from '../http.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthenticationService } from '../service/authentication.service';
 import { AppComponent } from '../app.component';
-import { InteractionService } from '../interaction.service'
+import { InteractionService } from '../interaction.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -28,7 +29,8 @@ export class LoginPageComponent {
   constructor(
     private authService: AuthenticationService,
     private _http: HttpService,
-    private _interactionService: InteractionService) {
+    private _interactionService: InteractionService,
+    private router: Router) {
     this.selectedVal = 'login';
     this.isForgotPassword = false;
   }
@@ -132,8 +134,9 @@ export class LoginPageComponent {
       for (let user of Object.keys(this.allUsers)) {
         t = this.allUsers[user].token;
         e = this.allUsers[user].userid;
-        if (t == "admin") {
-          this.userClass = t;
+        if (t == "user") {
+          console.log(t + "navigation success");
+          this.router.navigate(['userSongComponent']);
         }
       }
       // console.log(this.userClass);

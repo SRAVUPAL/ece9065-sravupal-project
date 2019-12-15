@@ -11,26 +11,14 @@ const app = express();
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
-    res.setHeader("Access-Control-Allow-Headers", "X-Requested-With, Content-Type"); 
-    res.setHeader("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS"); 
-    res.setHeader("X-Powered-By",' 3.2.1'); 
-    res.setHeader("Content-Type", "application/json;charset=utf-8");
+    res.header('Access-Control-Allow-Headers', '*');
+    if (req.method === 'OPTIONS') {
+        res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
+        return res.status(200).json({});
+    }
     next();
-  });
+});
   
-  app.get('/jokes/random', (req, res) => {
-    request(
-      { url: 'https://joke-api-strict-cors.appspot.com/jokes/random' },
-      (error, response, body) => {
-        if (error || response.statusCode !== 200) {
-          return res.status(500).json({ type: 'error', message: err.message });
-        }
-  
-        res.json(JSON.parse(body));
-      }
-    )
-  });
-
 app.use(bodyParser.urlencoded({ extended: true }))
 
 // parse requests of content-type - application/json

@@ -7,12 +7,12 @@ import { NewSongComponent } from '../newSong/newSong.component';
 import { PlaylistComponent } from '../playlistComponent/playlistComponent.component';
 
 @Component({
-  selector: 'app-songsPage',
-  templateUrl: './songsPage.component.html',
-  styleUrls: ['./songsPage.component.scss']
+  selector: 'app-userSongPage',
+  templateUrl: './userSongPage.component.html',
+  styleUrls: ['./userSongPage.component.scss']
 })
 
-export class SongsPageComponent implements OnInit {
+export class UserSongPageComponent implements OnInit {
 
   allSongs: Object;
   playlists: Object;
@@ -26,7 +26,7 @@ export class SongsPageComponent implements OnInit {
     private router: Router) { }
 
   onButtonClick(): void {
-    this.router.navigate(['/songsPage']);
+    this.router.navigate(['/userSongPage']);
   }
 
   viewSong() {
