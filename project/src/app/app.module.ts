@@ -9,6 +9,7 @@ import { ReviewComponent } from './reviewComponent/reviewComponent.component';
 import { LoginPageComponent } from './loginPage/loginPage.component';
 import { NewReviewComponent } from './newReview/newReview.component';
 import { NewSongComponent } from './newSong/newSong.component';
+import { UserReviewComponent } from './userReviewComponent/userReviewComponent.component';
 import { EditSongComponent } from './editSong/editSong.component';
 import { UserSongPageComponent } from './userSongPage/userSongPage.component';
 import { PlaylistComponent } from './playlistComponent/playlistComponent.component';
@@ -37,7 +38,8 @@ const appRoutes: Routes = [
   { path: 'addReview', component: NewReviewComponent },
   { path: 'playlist', component: PlaylistComponent },
   { path: 'viewAllData', component: ViewAllDataComponent },
-  { path: 'userSongComponent', component: UserSongPageComponent }
+  { path: 'userSongComponent', component: UserSongPageComponent },
+  { path: 'userReviewComponent', component: UserReviewComponent }
 ]
 
 var config = {
@@ -62,7 +64,8 @@ var config = {
     ViewAllDataComponent,
     FilterPipe,
     NewReviewComponent,
-    UserSongPageComponent
+    UserSongPageComponent,
+    UserReviewComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -82,6 +85,6 @@ var config = {
   ],
   providers: [LoginPageComponent, AppComponent],
   bootstrap: [AppComponent],
-  entryComponents: [ReviewComponent, NewSongComponent, EditSongComponent, ViewAllDataComponent, NewReviewComponent, UserSongPageComponent]
+  entryComponents: [ReviewComponent, NewSongComponent, UserReviewComponent, EditSongComponent, ViewAllDataComponent, NewReviewComponent, UserSongPageComponent]
 })
 export class AppModule { }

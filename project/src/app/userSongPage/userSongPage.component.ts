@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpService } from '../http.service';
 import { MatDialog, MatDialogConfig, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
-import { ReviewComponent } from '../reviewComponent/reviewComponent.component';
+import { UserReviewComponent } from '../userReviewComponent/userReviewComponent.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NewSongComponent } from '../newSong/newSong.component';
 import { PlaylistComponent } from '../playlistComponent/playlistComponent.component';
@@ -19,11 +19,13 @@ export class UserSongPageComponent implements OnInit {
   id: any;
   playlistId: any;
   playlistName: any;
-  @Input() reviewComponent: ReviewComponent;
+  @Input() reviewComponent: UserReviewComponent;
 
   constructor(private _http: HttpService,
     private dialog: MatDialog,
-    private router: Router) { }
+    private router: Router) { 
+      // this.closeNav("reviewSongBlock");
+    }
 
   onButtonClick(): void {
     this.router.navigate(['/userSongPage']);
@@ -58,9 +60,9 @@ export class UserSongPageComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.width = "auto";
     dialogConfig.height = "auto";
-    let dialogRef: MatDialogRef<ReviewComponent>;
+    let dialogRef: MatDialogRef<UserReviewComponent>;
 
-    dialogRef = this.dialog.open(ReviewComponent, dialogConfig);
+    dialogRef = this.dialog.open(UserReviewComponent, dialogConfig);
     dialogRef.componentInstance.id = id;
   }
 
@@ -91,4 +93,19 @@ export class UserSongPageComponent implements OnInit {
     songAlbum: String) {
     this._http.addToPlaylist(playlistName, songTitle, songAlbum);
   }
+
+  /**
+   * 
+   */
+  openNav(id: string) {
+    document.getElementById(id).style.width = "100%";
+  }
+
+  /**
+   * 
+   */
+  closeNav(id: string) {
+    document.getElementById(id).style.width = "0%";
+  }
 }
+

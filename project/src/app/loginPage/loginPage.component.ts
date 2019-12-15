@@ -132,12 +132,14 @@ export class LoginPageComponent {
       this.allUsers = data;
       let t, e;
       for (let user of Object.keys(this.allUsers)) {
-        t = this.allUsers[user].token;
-        e = this.allUsers[user].userid;
-        if (t == "user") {
-          console.log(t + "navigation success");
-          this.router.navigate(['userSongComponent']);
+        if (this.emailInput == this.allUsers[user].userid) {
+          t = this.allUsers[user].token; 
+          console.log(t);
         }
+      }
+      if (t == "user") {
+        console.log(t + "navigation success");
+        this.router.navigate(['userSongComponent']);
       }
       // console.log(this.userClass);
       this._interactionService.sendToken(this.emailInput);
@@ -145,7 +147,7 @@ export class LoginPageComponent {
   }
   hidePage() {
     if (this.userClass == "admin" || this.userClass == "user") {
-      console.log(this.userClass);
+      // console.log(this.userClass);
     };
   }
 }
