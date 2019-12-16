@@ -42,6 +42,7 @@ export class NewSongComponent implements OnInit {
   }
 
   addSongForm(songTitle: String, songRating: Number, songArtist: String, songAlbum: String, songLength: Number, songYear: Number, songGenre: String, songComment: String, songHidden: Boolean, songThumbnail: String) {
+    
     this._http.postSongsPage(songTitle, songRating, songArtist, songAlbum, songLength, songYear, songGenre, songComment, songHidden, songThumbnail)
     this.dialogRef.close();
     setTimeout(() => {

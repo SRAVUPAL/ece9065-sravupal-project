@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HttpParams } from "@angular/common/http";
 import { MatDialogRef, MatDialogModule } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Sanitization } from '../sanitize.service';
 
 @Component({
   selector: 'app-newReview',
@@ -18,7 +19,8 @@ export class NewReviewComponent implements OnInit {
   constructor(private _http: HttpService,
     private dialogRef: MatDialogRef<NewReviewComponent>,
     private http: HttpClient,
-    private formBuilder: FormBuilder) { this.defaultForm(); }
+    private formBuilder: FormBuilder,
+    private sanitization: Sanitization) { this.defaultForm(); }
 
   ngOnInit() { }
 
@@ -35,6 +37,12 @@ export class NewReviewComponent implements OnInit {
     songName: String,
     songReview: String,
     songRating: String) {
+      if (!this.sanitization.checkUserId(songReviwer) ||
+      !this.sanitization.checkString(songName) ||
+      !this.sanitization.checkString(songName) 
+    ) {
+      return;
+    }
     this._http.postReviewsPage(songReviwer, songName, songReview, songRating);
     alert("Review Added");
     this.dialogRef.close();

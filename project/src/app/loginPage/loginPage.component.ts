@@ -5,6 +5,7 @@ import { AuthenticationService } from '../service/authentication.service';
 import { AppComponent } from '../app.component';
 import { InteractionService } from '../interaction.service';
 import { Router } from '@angular/router';
+import { Sanitization } from '../sanitize.service'
 
 
 @Component({
@@ -30,7 +31,8 @@ export class LoginPageComponent {
     private authService: AuthenticationService,
     private _http: HttpService,
     private _interactionService: InteractionService,
-    private router: Router) {
+    private router: Router,
+    private sanitization: Sanitization) {
     this.selectedVal = 'login';
     this.isForgotPassword = false;
   }
@@ -69,6 +71,10 @@ export class LoginPageComponent {
 
   // Login user with  provided Email/ Password
   loginUser() {
+    if (!this.sanitization.checkUserId(this.emailInput) 
+    ) {
+      return;
+    }
     this.responseMessage = "";
     this.authService.login(this.emailInput, this.passwordInput)
       .then(res => {
@@ -85,6 +91,10 @@ export class LoginPageComponent {
 
   // Register user with  provided Email/ Password
   registerUser() {
+    if (!this.sanitization.checkString(this.emailInput) 
+    ) {
+      return;
+    }
     this.authService.register(this.emailInput, this.passwordInput)
       .then(res => {
 
