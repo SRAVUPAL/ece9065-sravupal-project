@@ -7,7 +7,7 @@
 <a>Give reviews to the favourite songs</a><br>
 <a>Add songs to playlist</a><br>
 <h2>Here are the List of all Songs</h2>
-<div class="searchResults" (click)="expand(song._id)" *ngFor="let song of allSongs | filter: searchText">
+<div class="searchResults" (click)="expand(song._id)" *ngFor="let song of allSongs | slice:0:10 | filter: searchText">
   <div *ngIf="allSongs">
 
     <button mat-raised-button [style.background-image]="'url(' + song.thumbnail + ')'">

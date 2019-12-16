@@ -126,7 +126,7 @@
     <button mat-icon-button (click)="onClose()">X</button>
     <sub class="reviewContent" *ngIf="allReviews">
         <div class="reviewList" *ngFor="let review of allReviews, index as i">
-            <div *ngIf="review.title==allSongs.title; else notShow">
+            <div *ngIf="review.title==allSongs.title">
                 <p class="review_data"><a>Reviewd by: </a> {{ review.reviwer }}</p>
                 <br>
                 <p class="review_data"><a>Song name: </a> {{ review.title }}</p>
@@ -135,11 +135,6 @@
                 <br>
                 <p class="review_data">{{ review.createdAt }}</p>
             </div>
-            <ng-template #notShow>
-                <p>
-                    ..............
-                </p>
-            </ng-template>
         </div>
     </sub>
 </div>

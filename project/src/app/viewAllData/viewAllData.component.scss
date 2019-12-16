@@ -64,23 +64,19 @@ div {
     }
 }
 
-sub{
-    background: rgb(238, 238, 238);
-        padding: 1em;
+sub{  background: rgb(238, 238, 238);
         margin-left: 10px;
         width: auto;
         height: auto;
-        margin-bottom: 1em;
         display: flex;
         flex-direction: column-reverse;
-        div {
+    
+        div div {
             background: rgb(201, 222, 228);
-            padding: 1em;
             margin-left: 10px;
             text-align: left;
             width: auto;
             height: auto;
-            margin-bottom: 1em;
             display: flex;
             flex-direction: column;
         }

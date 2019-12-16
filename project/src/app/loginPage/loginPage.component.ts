@@ -77,6 +77,7 @@ export class LoginPageComponent {
         this.isUserLoggedIn();
         this.checkUser();
         this.hidePage();
+        this.router.navigate(['songsPage']);
       }, err => {
         this.showMessage("danger", err.message);
       });
@@ -91,11 +92,12 @@ export class LoginPageComponent {
         this.authService.sendEmailVerification().then(res => {
           console.log(res);
           this.isForgotPassword = false;
-          this.showMessage("success", "Registration Successful! Please Verify Your Email");
+          alert("Registration success. Please verify the email before logging in.")
+          // this.showMessage("success", "Registration Successful! Please Verify Your Email");
         }, err => {
           this.showMessage("danger", err.message);
         });
-        this.isUserLoggedIn();
+        // this.isUserLoggedIn();
 
 
       }, err => {
@@ -122,6 +124,7 @@ export class LoginPageComponent {
         console.log(res);
         this.showMessage("success", "Successfully Logged In with Google");
         this.isUserLoggedIn();
+        this.router.navigate(['songsPage']);
       }, err => {
         this.showMessage("danger", err.message);
       });
