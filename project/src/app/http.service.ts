@@ -32,7 +32,7 @@ export class HttpService {
       album: songAlbum,
       length: songLength,
       year: songYear,
-      genre: songGenre,   
+      genre: songGenre,
       comment: songComment,
       Hidden: songHidden,
       thumbnail: songThumbnail
@@ -75,13 +75,13 @@ export class HttpService {
 
   addToPlaylist(playlistName: String,
     songTitle: string,
-    songAlbum: String ) {
+    songAlbum: String) {
     const obj = {
       name: playlistName,
-      title: songTitle,      
+      title: songTitle,
       album: songAlbum
     }
-    return this.http.post('http://localhost:3000/admin/allPlaylists/addtoAllPlaylists', obj).subscribe(res => console.log('Song Added to playlist'));
+    return this.http.post('http://localhost:3000/admin/playlist/createPlaylists', obj).subscribe(res => console.log('Song Added to playlist'));
   }
 
   editSongPage(id, songTitle: String,

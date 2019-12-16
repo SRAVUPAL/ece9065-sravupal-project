@@ -21,14 +21,11 @@
             <p class="songle_title">{{ song.title }}</p>
             <br>
             <p class="song_data"><strong>Overall Rating: </strong>{{ song.rating }}</p>
-        </button>
-        <!-- <div ng-app="">
-            <form>
-                Playlist Name: <input type="text" ng-model="playlistName">
-            </form>
-            <h1>You entered: {{playlistName}}</h1>
+        </button><br>
+        <div *ngIf="playlistBlock=='show'">
+            <strong>Playlist Name </strong> <input type="text" [(ngModel)]="playlistName"><br>
+            <p class="mat-raised-button" (click)="add(playlistName, song.title, song.album)">add</p>
         </div>
-        <span class="mat-raised-button mat-primary" (click)="addToPlaylist(playlistName, song.title, song.album)">Add to
-            Playlist</span> -->
+        <b *ngIf="playlistBlock=='hide'" class="mat-raised-button" (click)="addToPlaylist()">Add to
+            Playlist</b>
     </div>
-    

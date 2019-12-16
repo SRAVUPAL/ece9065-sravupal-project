@@ -17,15 +17,15 @@ export class UserSongPageComponent implements OnInit {
   allSongs: Object;
   playlists: Object;
   id: any;
+  playlistBlock = "hide";
   playlistId: any;
-  playlistName: any;
   @Input() reviewComponent: UserReviewComponent;
 
   constructor(private _http: HttpService,
     private dialog: MatDialog,
-    private router: Router) { 
-      // this.closeNav("reviewSongBlock");
-    }
+    private router: Router) {
+    // this.closeNav("reviewSongBlock");
+  }
 
   onButtonClick(): void {
     this.router.navigate(['/userSongPage']);
@@ -88,7 +88,11 @@ export class UserSongPageComponent implements OnInit {
     this.dialog.open(PlaylistComponent, dialogConfig);
   }
 
-  addToPlaylist(songTitle: string,
+  addToPlaylist() {
+    this.playlistBlock = "show";
+  }
+
+  add(songTitle: string,
     playlistName: string,
     songAlbum: String) {
     this._http.addToPlaylist(playlistName, songTitle, songAlbum);
