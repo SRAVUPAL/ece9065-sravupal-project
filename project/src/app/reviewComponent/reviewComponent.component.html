@@ -21,112 +21,27 @@
 
     </div>
     <div *ngIf="editBlock=='show'">
-        <mat-dialog-content [formGroup]="form" novalidate>
-            <div class="form-group">
-                <a>Title</a>
-                <input type="text" formControlName="title" #title />
-            </div>
-            <div *ngIf="form.controls['title'].invalid && (form.controls['title'].dirty || form.controls['title'].touched)"
-                class="alert alert-danger">
-                <div *ngIf="form.controls['title'].errors.required">
-                    Give Some title
-                </div>
-            </div>
-            <div class="form-group">
-                <a>Rating</a>
-                <input type="text" formControlName="rating" #rating />
-            </div>
-            <div *ngIf="form.controls['rating'].invalid && (form.controls['rating'].dirty || form.controls['rating'].touched)"
-                class="alert alert-danger">
-                <div *ngIf="form.controls['rating'].errors.required">
-                    Rating is required.
-                </div>
-            </div>
-            <div class="form-group">
-                <a>Artist</a>
-                <input type="text" formControlName="artist" #artist />
-            </div>
-            <div *ngIf="form.controls['artist'].invalid && (form.controls['artist'].dirty || form.controls['artist'].touched)"
-                class="alert alert-danger">
-                <div *ngIf="form.controls['artist'].errors.required">
-                    Artist is required.
-                </div>
-            </div>
-            <div class="form-group">
-                <a>Album</a>
-                <input type="text" formControlName="album" #album />
-            </div>
-            <div *ngIf="form.controls['album'].invalid && (form.controls['album'].dirty || form.controls['album'].touched)"
-                class="alert alert-danger">
-                <div *ngIf="form.controls['album'].errors.required">
-                    Album is required.
-                </div>
-            </div>
-            <div class="form-group">
-                <a>Length</a>
-                <input type="text" formControlName="length" #length />
-            </div>
-            <div *ngIf="form.controls['length'].invalid && (form.controls['length'].dirty || form.controls['length'].touched)"
-                class="alert alert-danger">
-                <div *ngIf="form.controls['length'].errors.required">
-                    Length is required.
-                </div>
-            </div>
-            <div class="form-group">
-                <a>Year</a>
-                <input type="text" formControlName="year" #year />
-            </div>
-            <div *ngIf="form.controls['year'].invalid && (form.controls['year'].dirty || form.controls['year'].touched)"
-                class="alert alert-danger">
-                <div *ngIf="form.controls['year'].errors.required">
-                    Year is required.
-                </div>
-            </div>
-            <div class="form-group">
-                <a>Genre</a>
-                <input type="text" formControlName="genre" #genre />
-            </div>
-            <div *ngIf="form.controls['genre'].invalid && (form.controls['genre'].dirty || form.controls['genre'].touched)"
-                class="alert alert-danger">
-                <div *ngIf="form.controls['genre'].errors.required">
-                    Genre is required.
-                </div>
-            </div>
-            <div class="form-group">
-                <a>Comment</a>
-                <input type="text" formControlName="comment" #comment />
-            </div>
-            <div *ngIf="form.controls['comment'].invalid && (form.controls['comment'].dirty || form.controls['comment'].touched)"
-                class="alert alert-danger">
-                <div *ngIf="form.controls['comment'].errors.required">
-                    Comment is required.
-                </div>
-            </div>
-            <div class="form-group">
-                <a>Hidden</a>
-                <input type="text" formControlName="hidden" #hidden />
-            </div>
-            <div *ngIf="form.controls['hidden'].invalid && (form.controls['hidden'].dirty || form.controls['hidden'].touched)"
-                class="alert alert-danger">
-                <div *ngIf="form.controls['hidden'].errors.required">
-                    Hidden is required.
-                </div>
-            </div>
-            <div class="form-group">
-                <a>Thumbnail</a>
-                <input type="text" formControlName="thumbnail" #thumbnail />
-            </div>
-            <div *ngIf="form.controls['thumbnail'].invalid && (form.controls['thumbnail'].dirty || form.controls['thumbnail'].touched)"
-                class="alert alert-danger">
-                <div *ngIf="form.controls['thumbnail'].errors.required">
-                    Thumbnail is required.
-                </div>
-            </div>
-
-            <button class="mat-raised-button mat-primary"
-                (click)="editSongForm(allSongs._id, title.value, rating.value, artist.value, album.value, length.value, year.value, genre.value, comment.value, hidden.value, thumbnail.value)">Add</button>
+        <mat-dialog-content>
+            <ul>
+                <li> <strong>Title </strong> <input type="text" [(ngModel)]="title"><br>
+                    <strong>Rating </strong> <input type="text" [(ngModel)]="rating"><br>
+                    <strong>Artist </strong> <input type="text" [(ngModel)]="artist"><br>
+                    <strong>Album </strong> <input type="text" [(ngModel)]="album"><br>
+                    <strong>Length </strong> <input type="text" [(ngModel)]="length"><br>
+                    <strong>Year </strong> <input type="text" [(ngModel)]="year"><br>
+                    <strong>Genre </strong> <input type="text" [(ngModel)]="genre"><br>
+                    <strong>Comment </strong> <input type="text" [(ngModel)]="comment"><br>
+                    <strong>Hidden </strong> <input type="text" [(ngModel)]="hidden"><br>
+                    <strong>Thumbnail </strong> <input type="text" [(ngModel)]="thumbnail"><br>
+                    <button class="mat-raised-button mat-primary"
+                        (click)="editSongForm(allSongs._id, title, rating, artist, album, length, year, genre, comment, hidden, thumbnail)">Edit
+                    </button>
+                </li>
+            </ul>
         </mat-dialog-content>
     </div>
+
+
     <h1>Reviews</h1><br>
     <button mat-icon-button (click)="onClose()">X</button>
     <sub class="reviewContent" *ngIf="allReviews">

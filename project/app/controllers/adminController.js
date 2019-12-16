@@ -1,6 +1,6 @@
 const SongData = require('../schema/songs.js');
 const ReviewData = require('../schema/reviews.js');
-const reviews= require('../schema/reviews.js');
+const reviews = require('../schema/reviews.js');
 const RatingData = require('../schema/ratings.js');
 const AccessData = require('../schema/access.js');
 const PlaylistData = require('../schema/playlist.js');
@@ -80,7 +80,7 @@ exports.findOneSong = (req, res, next) => {
 // Update a song identified by the songId in the request
 exports.updateSong = (req, res, next) => {
     // Validate Request
-    if (!req.body.content) {
+    if (!req.body) {
         return res.status(400).send({
             message: "SongData content can not be empty"
         });
@@ -88,15 +88,15 @@ exports.updateSong = (req, res, next) => {
 
     // Find song and update it with the request body
     SongData.findByIdAndUpdate(req.params.songId, {
-        title: req.body.title || "Untitled Song",
+        title: req.body.title,
         rating: req.body.rating,
-        artist: req.body.artist || "Unknown",
-        album: req.body.album || "Unknown",
+        artist: req.body.artist,
+        album: req.body.album,
         length: req.body.length,
         year: req.body.year,
-        genre: req.body.genre || "Unknown",
-        comment: req.body.comment || "Unknown",
-        Hidden: req.body.Hidden || "Unknown",
+        genre: req.body.genre,
+        comment: req.body.comment,
+        Hidden: req.body.Hidden,
         thumbnail: req.body.thumbnail
     }, { new: true })
         .then(songReq => {

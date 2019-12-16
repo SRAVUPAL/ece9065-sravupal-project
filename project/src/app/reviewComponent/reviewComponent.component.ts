@@ -17,7 +17,7 @@ import { Subscription } from 'rxjs';
 
 export class ReviewComponent implements OnInit {
 
-  form: FormGroup;
+  formNG: FormGroup;
   editBlock = "hide";
   allSongs: Object;
   songReviews = [];
@@ -59,6 +59,22 @@ export class ReviewComponent implements OnInit {
       // }
     });
   }
+
+  defaultForm() {
+    this.formNG = this.formBuilder.group({
+      title: ['', Validators.required],
+      rating: ['', Validators.required],
+      artist: ['', Validators.required],
+      album: ['', Validators.required],
+      length: ['', Validators.required],
+      year: ['', Validators.required],
+      genre: ['', Validators.required],
+      comment: ['', Validators.required],
+      hidden: ['', Validators.required],
+      thumbnail: ['', Validators.required]
+    });
+  }
+
   onClose() {
     this.dialogRef.close();
   }
@@ -83,17 +99,17 @@ export class ReviewComponent implements OnInit {
   }
 
   editSong(id) {
-    // this.editBlock = "show";
-    const dialogConfig = new MatDialogConfig();
-    console.log(id);
-    this._interactionService.sendSongId(id);
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-    dialogConfig.width = "200%";
-    dialogConfig.height = "200%";
+    this.editBlock = "show";
+    // const dialogConfig = new MatDialogConfig();
+    // console.log(id);
+    // this._interactionService.sendSongId(id);
+    // dialogConfig.disableClose = true;
+    // dialogConfig.autoFocus = true;
+    // dialogConfig.width = "200%";
+    // dialogConfig.height = "200%";
     // let dialogRef: MatDialogRef<EditSongComponent>;
 
-    this.dialog.open(EditSongComponent, dialogConfig);
+    // this.dialog.open(EditSongComponent, dialogConfig);
     // dialogRef.componentInstance.oneSongId = id;
     // console.log(dialogRef.componentInstance.id)
     // const navigationExtras: NavigationExtras = {
@@ -103,25 +119,10 @@ export class ReviewComponent implements OnInit {
     // };
   }
 
-  defaultForm() {
-    this.form = this.formBuilder.group({
-      title: ['', Validators.required],
-      rating: ['', Validators.required],
-      artist: ['', Validators.required],
-      album: ['', Validators.required],
-      length: ['', Validators.required],
-      year: ['', Validators.required],
-      genre: ['', Validators.required],
-      comment: ['', Validators.required],
-      hidden: ['', Validators.required],
-      thumbnail: ['', Validators.required]
-    });
-  }
-
   editSongForm(id, songTitle: String, songRating: Number, songArtist: String, songAlbum: String, songLength: Number, songYear: Number, songGenre: String, songComment: String, songHidden: Boolean, songThumbnail: String) {
     this._http.editSongPage(id, songTitle, songRating, songArtist, songAlbum, songLength, songYear, songGenre, songComment, songHidden, songThumbnail)
-    console.log(this.songId)
-    alert("Song Added");
+    console.log(this.id)
+    alert("Song Modified");
     this.dialogRef.close();
   }
 

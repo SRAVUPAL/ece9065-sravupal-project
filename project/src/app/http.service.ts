@@ -109,4 +109,3 @@ export class HttpService {
     return this.http.put('http://localhost:3000/admin/songs/update/' + id, obj).subscribe(res => console.log('Song Modified'));
   }
 }
-
