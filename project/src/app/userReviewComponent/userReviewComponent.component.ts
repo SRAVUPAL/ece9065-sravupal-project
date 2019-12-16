@@ -83,45 +83,13 @@ export class UserReviewComponent implements OnInit {
   }
 
   editSong(id) {
-    // this.editBlock = "show";
-    const dialogConfig = new MatDialogConfig();
-    console.log(id);
-    this._interactionService.sendSongId(id);
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-    dialogConfig.width = "200%";
-    dialogConfig.height = "200%";
-    // let dialogRef: MatDialogRef<EditSongComponent>;
-
-    this.dialog.open(EditSongComponent, dialogConfig);
-    // dialogRef.componentInstance.oneSongId = id;
-    // console.log(dialogRef.componentInstance.id)
-    // const navigationExtras: NavigationExtras = {
-    //   state: {
-    //     id: id
-    //   }
-    // };
-  }
-
-  defaultForm() {
-    this.form = this.formBuilder.group({
-      title: ['', Validators.required],
-      rating: ['', Validators.required],
-      artist: ['', Validators.required],
-      album: ['', Validators.required],
-      length: ['', Validators.required],
-      year: ['', Validators.required],
-      genre: ['', Validators.required],
-      comment: ['', Validators.required],
-      hidden: ['', Validators.required],
-      thumbnail: ['', Validators.required]
-    });
+    this.editBlock = "show";
   }
 
   editSongForm(id, songTitle: String, songRating: Number, songArtist: String, songAlbum: String, songLength: Number, songYear: Number, songGenre: String, songComment: String, songHidden: Boolean, songThumbnail: String) {
     this._http.editSongPage(id, songTitle, songRating, songArtist, songAlbum, songLength, songYear, songGenre, songComment, songHidden, songThumbnail)
-    console.log(this.songId)
-    alert("Song Added");
+    console.log(this.id)
+    alert("Song Modified");
     this.dialogRef.close();
   }
 

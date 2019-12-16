@@ -24,7 +24,21 @@ export class UserSongPageComponent implements OnInit {
   constructor(private _http: HttpService,
     private dialog: MatDialog,
     private router: Router) {
-    // this.closeNav("reviewSongBlock");
+      this._http.getSongsPage().subscribe((data: any[]) => {
+        this.allSongs = data.sort(function (i, j) {
+          return j.rating - i.rating;
+        })
+      });
+      this._http.getPlaylists().subscribe(data => {
+        this.playlists = data;
+        let i, n;
+        for (let user of Object.keys(this.playlists)) {
+          i = this.playlists[user]._id;
+          n = this.playlists[user].name;
+        }
+        this.playlistId = i;
+        this.playlistId = n;
+      });
   }
 
   onButtonClick(): void {

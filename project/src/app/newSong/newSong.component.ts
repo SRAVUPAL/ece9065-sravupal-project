@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { HttpParams } from "@angular/common/http";
-import { MatDialogRef, MatDialog, MatDialogModule } from '@angular/material';
+import { HttpClient } from '@angular/common/http';
+import { MatDialogRef, MatDialog } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import{ MatDialogConfig } from '@angular/material/dialog';
 import{ NewReviewComponent } from '../newReview/newReview.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-newSong',
@@ -21,7 +21,8 @@ export class NewSongComponent implements OnInit {
     private dialogRef: MatDialogRef<NewSongComponent>,
     private http: HttpClient,
     private dialog: MatDialog,
-    private formBuilder: FormBuilder) { this.defaultForm(); }
+    private formBuilder: FormBuilder,
+    private route: Router) { this.defaultForm(); }
 
   ngOnInit() { }
 
@@ -42,8 +43,12 @@ export class NewSongComponent implements OnInit {
 
   addSongForm(songTitle: String, songRating: Number, songArtist: String, songAlbum: String, songLength: Number, songYear: Number, songGenre: String, songComment: String, songHidden: Boolean, songThumbnail: String) {
     this._http.postSongsPage(songTitle, songRating, songArtist, songAlbum, songLength, songYear, songGenre, songComment, songHidden, songThumbnail)
-    alert("Song Added");
     this.dialogRef.close();
+    setTimeout(() => {
+      this.route.navigate(['userSongComponent']);
+      window.location.reload();
+    },500);
+    
   }
 
   addReviewForm() {
