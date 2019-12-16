@@ -91,7 +91,7 @@ export class LoginPageComponent {
 
   // Register user with  provided Email/ Password
   registerUser() {
-    if (!this.sanitization.checkString(this.emailInput) 
+    if (!this.sanitization.checkUserId(this.emailInput) 
     ) {
       return;
     }
@@ -103,7 +103,7 @@ export class LoginPageComponent {
           console.log(res);
           this.isForgotPassword = false;
           alert("Registration success. Please verify the email before logging in.")
-          // this.showMessage("success", "Registration Successful! Please Verify Your Email");
+          
         }, err => {
           this.showMessage("danger", err.message);
         });
