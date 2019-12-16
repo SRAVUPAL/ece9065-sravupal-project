@@ -110,4 +110,12 @@ export class HttpService {
     };
     return this.http.put(adminUrl + '/songs/update/' + id, obj).subscribe(res => console.log('Song Modified'));
   }
+  postAccess(emailid: String,
+    user: String) {
+    const obj = {
+      userid: emailid,
+      token: user
+    };
+    this.http.post(adminUrl + '/reviews/createReview', obj).subscribe(res => console.log('Review Added'));
+  }
 }

@@ -26,6 +26,7 @@ export class LoginPageComponent {
   userDetails: any;
   allUsers: Object;
   userClass = "user";
+  user = "user"
 
   constructor(
     private authService: AuthenticationService,
@@ -103,7 +104,7 @@ export class LoginPageComponent {
           console.log(res);
           this.isForgotPassword = false;
           alert("Registration success. Please verify the email before logging in.")
-          
+          this._http.postAccess(this.emailInput,this.user);
         }, err => {
           this.showMessage("danger", err.message);
         });
