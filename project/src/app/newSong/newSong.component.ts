@@ -3,9 +3,10 @@ import { HttpService } from '../http.service';
 import { HttpClient } from '@angular/common/http';
 import { MatDialogRef, MatDialog } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import{ MatDialogConfig } from '@angular/material/dialog';
-import{ NewReviewComponent } from '../newReview/newReview.component';
+import { MatDialogConfig } from '@angular/material/dialog';
+import { NewReviewComponent } from '../newReview/newReview.component';
 import { Router } from '@angular/router';
+import { Sanitization } from '../sanitize.service';
 
 @Component({
   selector: 'app-newSong',
@@ -22,7 +23,8 @@ export class NewSongComponent implements OnInit {
     private http: HttpClient,
     private dialog: MatDialog,
     private formBuilder: FormBuilder,
-    private route: Router) { this.defaultForm(); }
+    private route: Router,
+    private sanitization: Sanitization) { this.defaultForm(); }
 
   ngOnInit() { }
 
@@ -42,14 +44,21 @@ export class NewSongComponent implements OnInit {
   }
 
   addSongForm(songTitle: String, songRating: Number, songArtist: String, songAlbum: String, songLength: Number, songYear: Number, songGenre: String, songComment: String, songHidden: Boolean, songThumbnail: String) {
-    
+    if (!this.sanitization.checkString(songTitle) ||
+      !this.sanitization.checkString(songArtist) ||
+      !this.sanitization.checkString(songAlbum) ||
+      !this.sanitization.checkString(songGenre) ||
+      !this.sanitization.checkString(songComment)
+    ) {
+      return;
+    }
     this._http.postSongsPage(songTitle, songRating, songArtist, songAlbum, songLength, songYear, songGenre, songComment, songHidden, songThumbnail)
     this.dialogRef.close();
     setTimeout(() => {
       this.route.navigate(['userSongComponent']);
       window.location.reload();
-    },500);
-    
+    }, 500);
+
   }
 
   addReviewForm() {

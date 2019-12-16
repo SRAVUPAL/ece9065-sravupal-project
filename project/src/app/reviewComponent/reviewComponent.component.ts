@@ -4,7 +4,6 @@ import { MatDialog, MatDialogConfig, MatDialogRef, MatDialogModule } from '@angu
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { SongsPageComponent } from '../songsPage/songsPage.component';
 import { NewReviewComponent } from '../newReview/newReview.component';
-import { EditSongComponent } from '../editSong/editSong.component';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { InteractionService } from '../interaction.service';
 import { Subscription } from 'rxjs';
@@ -52,11 +51,7 @@ export class ReviewComponent implements OnInit {
       this.allSongs = data;
     });
     this._http.getReviewsPage().subscribe(data => {
-      // for (let i = 0; i < this.allReviews[i].length(); i++) {
-      // if (this.allReviews[i].title == "dangerous") {
       this.allReviews = data;
-      // }
-      // }
     });
   }
 
@@ -80,11 +75,9 @@ export class ReviewComponent implements OnInit {
   }
 
   deleteSong(id) {
-    console.log(id);
     this._http.deleteSongPage(id);
     alert("Song Deleted");
     this.dialogRef.close();
-    // console.log(this.userClass);
   }
 
   addReview() {
@@ -100,23 +93,6 @@ export class ReviewComponent implements OnInit {
 
   editSong(id) {
     this.editBlock = "show";
-    // const dialogConfig = new MatDialogConfig();
-    // console.log(id);
-    // this._interactionService.sendSongId(id);
-    // dialogConfig.disableClose = true;
-    // dialogConfig.autoFocus = true;
-    // dialogConfig.width = "200%";
-    // dialogConfig.height = "200%";
-    // let dialogRef: MatDialogRef<EditSongComponent>;
-
-    // this.dialog.open(EditSongComponent, dialogConfig);
-    // dialogRef.componentInstance.oneSongId = id;
-    // console.log(dialogRef.componentInstance.id)
-    // const navigationExtras: NavigationExtras = {
-    //   state: {
-    //     id: id
-    //   }
-    // };
   }
 
   editSongForm(id, songTitle: String, songRating: Number, songArtist: String, songAlbum: String, songLength: Number, songYear: Number, songGenre: String, songComment: String, songHidden: Boolean, songThumbnail: String) {
