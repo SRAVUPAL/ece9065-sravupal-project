@@ -3,7 +3,7 @@ const ReviewData = require('../schema/reviews.js');
 const reviews = require('../schema/reviews.js');
 const RatingData = require('../schema/ratings.js');
 const AccessData = require('../schema/access.js');
-const PlaylistData = require('../schema/playlist.js');
+const playlist = require('../schema/playlist.js');
 const AllPlaylistsData = require('../schema/allPlaylists.js');
 
 // Create and Save a new SongData
@@ -497,59 +497,59 @@ exports.deleteAccess = (req, res, next) => {
 
 //CRUD operations for playlist
 
-// Create and Save a new PlaylistData
+// Create and Save a new playlist
 exports.createPlaylist = (req, res, next) => {
     // Validate request
-    if (!req.body.content) {
+    if (!req.body) {
         return res.status(400).send({
-            message: "PlaylistData content can not be empty"
+            message: "playlist content can not be empty"
         });
     }
 
-    // Create new PlaylistData
-    const playlistReq = new PlaylistData({
-        name: String,
-        title: String,
-        album: String
+    // Create new playlist
+    const playlistReq = new playlist({
+        name: req.body.name,
+        title: req.body.title,
+        album: req.body.album
     });
 
-    // Save PlaylistData in the database
+    // Save playlist in the database
     playlistReq.save()
         .then(data => {
             res.send(data);
         }).catch(err => {
             res.status(500).send({
-                message: err.message || "Some error occurred while creating the PlaylistData."
+                message: err.message || "Some error occurred while creating the playlist."
             });
         });
 };
 
 // Retrieve and return all playlists from the database.
 exports.findAllPlaylist = (req, res, next) => {
-    PlaylistData.find()
+    playlist.find()
         .then(playlist => {
             res.send(playlist);
         }).catch(err => {
             res.status(500).send({
-                message: err.message || "Some error occurred while retrieving PlaylistData."
+                message: err.message || "Some error occurred while retrieving playlist."
             });
         });
 };
 
 // Find a single playlist with a playlistId
 exports.findOnePlaylist = (req, res, next) => {
-    PlaylistData.findById(req.params.playlistId)
+    playlist.findById(req.params.playlistId)
         .then(playlistReq => {
             if (!playlistReq) {
                 return res.status(404).send({
-                    message: "PlaylistData not found with id " + req.params.playlistId
+                    message: "playlist not found with id " + req.params.playlistId
                 });
             }
             res.send(playlistReq);
         }).catch(err => {
             if (err.kind === 'ObjectId') {
                 return res.status(404).send({
-                    message: "PlaylistData not found with id " + req.params.playlistId
+                    message: "playlist not found with id " + req.params.playlistId
                 });
             }
             return res.status(500).send({
@@ -563,12 +563,12 @@ exports.updatePlaylist = (req, res, next) => {
     // Validate Request
     if (!req.body.content) {
         return res.status(400).send({
-            message: "PlaylistData content can not be empty"
+            message: "playlist content can not be empty"
         });
     }
 
     // Find playlist and update it with the request body
-    PlaylistData.findByIdAndUpdate(req.params.playlistId, {
+    playlist.findByIdAndUpdate(req.params.playlistId, {
         name: String,
         title: String,
         album: String
@@ -576,14 +576,14 @@ exports.updatePlaylist = (req, res, next) => {
         .then(playlistReq => {
             if (!playlistReq) {
                 return res.status(404).send({
-                    message: "PlaylistData not found with id " + req.params.playlistId
+                    message: "playlist not found with id " + req.params.playlistId
                 });
             }
             res.send(playlistReq);
         }).catch(err => {
             if (err.kind === 'ObjectId') {
                 return res.status(404).send({
-                    message: "PlaylistData not found with id " + req.params.playlistId
+                    message: "playlist not found with id " + req.params.playlistId
                 });
             }
             return res.status(500).send({
@@ -594,18 +594,18 @@ exports.updatePlaylist = (req, res, next) => {
 
 // Delete a playlist with the specified playlistId in the request
 exports.deletePlaylist = (req, res, next) => {
-    PlaylistData.findByIdAndRemove(req.params.playlistId)
+    playlist.findByIdAndRemove(req.params.playlistId)
         .then(playlistReq => {
             if (!playlistReq) {
                 return res.status(404).send({
-                    message: "PlaylistData not found with id " + req.params.playlistId
+                    message: "playlist not found with id " + req.params.playlistId
                 });
             }
-            res.send({ message: "PlaylistData deleted successfully!" });
+            res.send({ message: "playlist deleted successfully!" });
         }).catch(err => {
             if (err.kind === 'ObjectId' || err.name === 'NotFound') {
                 return res.status(404).send({
-                    message: "PlaylistData not found with id " + req.params.playlistId
+                    message: "playlist not found with id " + req.params.playlistId
                 });
             }
             return res.status(500).send({

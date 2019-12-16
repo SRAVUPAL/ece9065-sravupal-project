@@ -78,7 +78,7 @@ module.exports = (app) => {
      */
 
     // Create a new Playlist
-    app.post('/admin/playlist', special.createPlaylist);
+    app.post('/admin/playlist/createPlaylists', special.createPlaylist);
 
     // Retrieve all Playlist
     app.get('/admin/playlist/getPlaylists', special.findAllPlaylist);

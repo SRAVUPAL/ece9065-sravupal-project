@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+// import { DbConfig } from "./config";
+// const dbUrl = DbConfig;
 @Injectable({
   providedIn: 'root'
 })
